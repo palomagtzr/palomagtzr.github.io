@@ -36,8 +36,9 @@ export function initHeader(lenis: Lenis | null) {
       const target = a.hash.length > 1 ? document.querySelector<HTMLElement>(a.hash) : document.body;
       if (!target) return;
       e.preventDefault();
-      if (lenis) lenis.scrollTo(target, { offset: a.hash === '#top' ? 0 : -72, duration: 1.2 });
-      else target.scrollIntoView();
+      const focusTarget = () => { target.tabIndex = -1; target.focus({ preventScroll: true }); };
+      if (lenis) lenis.scrollTo(target, { offset: a.hash === '#top' ? 0 : -72, duration: 1.2, onComplete: focusTarget });
+      else { target.scrollIntoView(); focusTarget(); }
       history.pushState(null, '', a.hash);
     });
   });

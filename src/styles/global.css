@@ -104,3 +104,4 @@
   .js .hl-drip { transform: none; }
 }
 .wordmark-shine { filter: url(#wordmark-shine); }
+[tabindex="-1"]:focus { outline: none; }

@@ -1,6 +1,6 @@
 import gsap from 'gsap';
 import type Lenis from 'lenis';
-import { q } from './env';
+import { env, q, qa } from './env';
 
 /**
  * First visit of the session only: the drop fills with slime from the bottom,
@@ -19,6 +19,7 @@ export function initLoader(lenis: Lenis): Promise<void> {
   try { sessionStorage.setItem('pg-loaded', '1'); } catch { /* private mode */ }
 
   lenis.stop();
+  if (env.mobile) qa<SVGGElement>('g[style]', loader).forEach((g) => (g.style.filter = 'none'));
   gsap.set(level, { y: 0 });
   gsap.set(drip, { scale: 0, transformOrigin: '50% 0%', autoAlpha: 0 });
 

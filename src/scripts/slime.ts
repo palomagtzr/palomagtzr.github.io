@@ -3,7 +3,10 @@ import { env, qa } from './env';
 
 /** The slime "breathes": the turbulence frequency drifts very slowly. */
 export function initSlimeBreathing() {
-  if (env.mobile) return;
+  if (env.mobile) {
+    qa<SVGFETurbulenceElement>('[data-breathe]').forEach((t) => t.setAttribute('numOctaves', '1'));
+    return;
+  }
   qa<SVGFETurbulenceElement>('[data-breathe]').forEach((turb, i) => {
     gsap.to(turb, {
       attr: { baseFrequency: '0.017 0.038' },

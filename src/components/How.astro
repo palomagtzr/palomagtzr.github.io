@@ -11,25 +11,25 @@ const word = 'display text-[clamp(4rem,12vw,11rem)] leading-[0.82] tracking-[-0.
 
   <div class="flex flex-wrap items-end gap-x-10 gap-y-4 py-7 border-t-[1.5px] border-ink" data-habit="left">
     <span class="label text-ink-3 self-start pt-[18px]" aria-hidden="true">(1)</span>
-    <span class={word} data-word>Listen.</span>
+    <h3 class={`m-0 ${word}`} data-word>Listen.</h3>
     <p class="m-0 mb-2.5 flex-[1_1_240px] max-w-[320px] text-[18px] leading-[1.5] text-ink-2" data-habit-copy>I don't build until I understand how the work actually happens.</p>
   </div>
 
   <div class="flex flex-wrap-reverse items-end justify-end gap-x-10 gap-y-4 py-7 border-t-[1.5px] border-ink" data-habit="right">
     <p class="m-0 mb-2.5 flex-[1_1_240px] max-w-[320px] text-[18px] leading-[1.5] text-ink-2 text-right" data-habit-copy>If people don't enjoy using it, it doesn't matter how well it works.</p>
-    <span class={`${word} inline-flex items-start gap-[0.08em]`}>
-      <span class="relative inline-block px-[0.12em] pt-[0.04em] pb-[0.1em] rounded-[0.14em] -rotate-2" data-design>
+    <div class={`${word} inline-flex items-start gap-[0.08em]`}>
+      <div class="relative inline-block px-[0.12em] pt-[0.04em] pb-[0.1em] rounded-[0.14em] -rotate-2" data-design>
         <span class="absolute inset-0 slime-filter" aria-hidden="true"><span class="absolute inset-0 rounded-[0.14em] bg-linear-to-b from-slime to-amber" data-design-smear></span></span>
-        <span class="relative" data-word>Design.</span>
-      </span>
+        <h3 class="m-0 relative" data-word>Design.</h3>
+      </div>
       <DropLogo class="w-[0.42em] h-[0.42em] rotate-[12deg] shrink-0" />
-    </span>
+    </div>
     <span class="label text-ink-3 self-start pt-[18px]" aria-hidden="true">(2)</span>
   </div>
 
   <div class="flex flex-wrap items-end gap-x-10 gap-y-4 pt-7 pl-[clamp(0px,8vw,140px)] border-t-[1.5px] border-ink" data-habit="left">
     <span class="label text-ink-3 self-start pt-[18px]" aria-hidden="true">(3)</span>
-    <span class={word} data-word>Write it down.</span>
+    <h3 class={`m-0 ${word}`} data-word>Write it down.</h3>
     <p class="m-0 mb-2.5 flex-[1_1_240px] max-w-[320px] text-[18px] leading-[1.5] text-ink-2" data-habit-copy>Specs and decisions go on paper, so nothing lives only in my head.</p>
   </div>
   </div>
