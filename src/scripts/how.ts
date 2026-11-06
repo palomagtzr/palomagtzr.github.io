@@ -25,7 +25,8 @@ export function initHow() {
     const smear = q('[data-design-smear]', habit);
     const logo = smear ? q('.drop-logo', habit) : null;
 
-    const tl = scrubTimeline([mover, split.words, copy, smear].filter(Boolean) as Element[], habit, 'top 88%', env.mobile ? 'top 45%' : 'top 32%', env.mobile ? 0.4 : 0.8);
+    // Everything is in place by the time the row reaches the centre of the viewport.
+    const tl = scrubTimeline([mover, split.words, copy, smear].filter(Boolean) as Element[], habit, 'top 90%', 'center center', env.mobile ? 0.3 : 0.5);
     tl.fromTo(mover, { xPercent: fromLeft ? -26 : 26 }, { xPercent: 0, ease: 'none' }, 0)
       .from(split.words, { yPercent: 120, stagger: { each: 0.18, from: fromLeft ? 'start' : 'end' }, ease: 'power2.out' }, 0)
       .from(copy, { autoAlpha: 0, y: 18, ease: 'power2.out' }, 0.35);

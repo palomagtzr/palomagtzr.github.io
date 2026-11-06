@@ -1,6 +1,7 @@
 ---
 import DropLogo from './DropLogo.astro';
-const word = 'display text-[clamp(4rem,12vw,11rem)] leading-[0.82] tracking-[-0.06em]';
+const word = 'display leading-[0.82] tracking-[-0.06em] whitespace-nowrap';
+const num = 'label text-ink-3 w-9 shrink-0 pt-[18px]';
 ---
 <section id="how" class="overflow-x-clip scroll-mt-20" aria-labelledby="how-title" data-section="how">
   <div class="container-x pt-28 pb-24 sm:pt-[140px] sm:pb-[110px] flex flex-col">
@@ -9,28 +10,34 @@ const word = 'display text-[clamp(4rem,12vw,11rem)] leading-[0.82] tracking-[-0.
     <span class="text-ink-3">Three habits</span>
   </div>
 
-  <div class="flex flex-wrap items-end gap-x-10 gap-y-4 py-7 border-t-[1.5px] border-ink" data-habit="left">
-    <span class="label text-ink-3 self-start pt-[18px]" aria-hidden="true">(1)</span>
-    <h3 class={`m-0 ${word}`} data-word>Listen.</h3>
-    <p class="m-0 mb-2.5 flex-[1_1_240px] max-w-[320px] text-[18px] leading-[1.5] text-ink-2" data-habit-copy>I don't build until I understand how the work actually happens.</p>
-  </div>
-
-  <div class="flex flex-wrap-reverse items-end justify-end gap-x-10 gap-y-4 py-7 border-t-[1.5px] border-ink" data-habit="right">
-    <p class="m-0 mb-2.5 flex-[1_1_240px] max-w-[320px] text-[18px] leading-[1.5] text-ink-2 text-right" data-habit-copy>If people don't enjoy using it, it doesn't matter how well it works.</p>
-    <div class={`${word} inline-flex items-start gap-[0.08em]`}>
-      <div class="relative inline-block px-[0.12em] pt-[0.04em] pb-[0.1em] rounded-[0.14em] -rotate-2" data-design>
-        <span class="slime-block absolute inset-0 rounded-[0.14em]" aria-hidden="true" data-design-smear></span>
-        <h3 class="m-0 relative" data-word>Design.</h3>
-      </div>
-      <DropLogo class="w-[0.42em] h-[0.42em] rotate-[12deg] shrink-0" />
+  <div class="flex items-start gap-x-4 sm:gap-x-6 py-7 border-t-[1.5px] border-ink" data-habit="left">
+    <span class={num} aria-hidden="true">(1)</span>
+    <div class="min-w-0 flex-1 flex flex-wrap items-end gap-x-10 gap-y-4">
+      <h3 class={`m-0 ${word} text-[clamp(4rem,12vw,11rem)]`} data-word>Listen.</h3>
+      <p class="m-0 mb-2.5 flex-[1_1_240px] max-w-[320px] text-[18px] leading-[1.5] text-ink-2" data-habit-copy>I don't build until I understand how the work actually happens.</p>
     </div>
-    <span class="label text-ink-3 self-start pt-[18px]" aria-hidden="true">(2)</span>
   </div>
 
-  <div class="flex flex-wrap items-end gap-x-10 gap-y-4 pt-7 pl-[clamp(0px,8vw,140px)] border-t-[1.5px] border-ink" data-habit="left">
-    <span class="label text-ink-3 self-start pt-[18px]" aria-hidden="true">(3)</span>
-    <h3 class={`m-0 ${word}`} data-word>Write it down.</h3>
-    <p class="m-0 mb-2.5 flex-[1_1_240px] max-w-[320px] text-[18px] leading-[1.5] text-ink-2" data-habit-copy>Specs and decisions go on paper, so nothing lives only in my head.</p>
+  <div class="flex items-start justify-end gap-x-4 sm:gap-x-6 py-7 border-t-[1.5px] border-ink" data-habit="right">
+    <div class="min-w-0 flex-1 flex flex-wrap-reverse items-end justify-end gap-x-10 gap-y-4">
+      <p class="m-0 mb-2.5 flex-[1_1_240px] max-w-[320px] text-[18px] leading-[1.5] text-ink-2 text-right" data-habit-copy>If people don't enjoy using it, it doesn't matter how well it works.</p>
+      <div class={`${word} text-[clamp(4rem,12vw,11rem)] inline-flex items-start gap-[0.08em]`}>
+        <div class="relative inline-block px-[0.12em] pt-[0.04em] pb-[0.1em] rounded-[0.14em] -rotate-2" data-design>
+          <span class="slime-block absolute inset-0 rounded-[0.14em]" aria-hidden="true" data-design-smear></span>
+          <h3 class="m-0 relative" data-word>Design.</h3>
+        </div>
+        <DropLogo class="w-[0.42em] h-[0.42em] rotate-[12deg] shrink-0" />
+      </div>
+    </div>
+    <span class={`${num} text-right`} aria-hidden="true">(2)</span>
+  </div>
+
+  <div class="flex items-start gap-x-4 sm:gap-x-6 pt-7 border-t-[1.5px] border-ink" data-habit="left">
+    <span class={num} aria-hidden="true">(3)</span>
+    <div class="min-w-0 flex-1 flex flex-wrap items-end gap-x-10 gap-y-4 sm:pl-[clamp(0px,6vw,120px)]">
+      <h3 class={`m-0 ${word} text-[clamp(3rem,8.4vw,9rem)]`} data-word>Write it down.</h3>
+      <p class="m-0 mb-2.5 flex-[1_1_240px] max-w-[320px] text-[18px] leading-[1.5] text-ink-2" data-habit-copy>Specs and decisions go on paper, so nothing lives only in my head.</p>
+    </div>
   </div>
   </div>
 </section>
