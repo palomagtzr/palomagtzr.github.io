@@ -1,7 +1,7 @@
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import type Lenis from 'lenis';
-import { env, q, qa } from './env';
+import { q, qa } from './env';
 import { hint, unhint, scrubTimeline } from './motion';
 
 /**
@@ -41,16 +41,14 @@ export function initProjects(lenis: Lenis | null) {
     cols.forEach((col, c) => enter.to(col, { yPercent: -Number(col.dataset.digitCol) * 10, duration: 1.1, ease: 'power4.inOut' }, 0.1 + c * 0.1));
     if (bars.length) enter.from(bars, { scaleX: 0, transformOrigin: '0% 50%', duration: 0.8, ease: 'power3.out', stagger: 0.05 }, 0.5);
 
-    const images = env.mobile ? [] : qa('[data-parallax]', article);
+    // Screens sit exactly in their frames (no parallax, no scale); only the two
+    // overlapping windows of the websites project drift apart.
     const front = q('[data-window="front"]', article);
     const back = q('[data-window="back"]', article);
-    const scrubbed = [...images, front, back].filter(Boolean) as Element[];
-    if (scrubbed.length) {
-      const tl = scrubTimeline(scrubbed, article, 'top bottom', 'bottom top', 0.6);
-      if (images.length) tl.fromTo(images, { yPercent: -3, scale: 1.07 }, { yPercent: 3, scale: 1.07, ease: 'none', duration: 1 }, 0);
-      if (front && back) {
-        tl.fromTo(front, { y: 22 }, { y: -16, ease: 'none', duration: 1 }, 0).fromTo(back, { y: -10 }, { y: 10, ease: 'none', duration: 1 }, 0);
-      }
+    if (front && back) {
+      scrubTimeline([front, back], article, 'top bottom', 'bottom top', 0.6)
+        .fromTo(front, { y: 22 }, { y: -16, ease: 'none', duration: 1 }, 0)
+        .fromTo(back, { y: -10 }, { y: 10, ease: 'none', duration: 1 }, 0);
     }
     // Leaving at the top: only once the panel's bottom has crossed the upper 60 % of the viewport.
     scrubTimeline(panel, panel, 'bottom 60%', 'bottom 0%', 0.4)
