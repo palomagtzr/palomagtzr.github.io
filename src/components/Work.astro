@@ -13,10 +13,10 @@ const index = [
   ['05', 'ABR brand websites'],
   ['06', 'Process redesign'],
 ];
-import ticketsWeb from '../assets/tickets_web.jpg';
-import ticketsMobile from '../assets/tickets_mobile.jpg';
-import finance from '../assets/finance.jpg';
-import ops from '../assets/ops.jpg';
+import ticketsWeb from '../assets/tickets_web.png';
+import ticketsMobile from '../assets/tickets_mobile.png';
+import finance from '../assets/finance.png';
+import ops from '../assets/ops.png';
 import monexLogo from '../assets/armonex-logo.png';
 import abrHome from '../assets/abr_home.jpg';
 import obraHome from '../assets/obra_home.jpg';
@@ -55,12 +55,12 @@ const departments = [
         <div class="relative z-10 flex-1 flex justify-center items-end gap-[22px]" data-panel-content>
         <div class="flex-auto max-w-[470px] bg-ink rounded-[14px] p-2 shadow-[0_24px_50px_rgba(20,20,20,0.22)] mr-[80px] sm:mr-0">
           <div class="relative overflow-hidden rounded-[7px]" data-frame>
-            <Image src={ticketsWeb} alt="ABR Tickets board on web" widths={[800, 1200, 1600, 2400]} sizes="(min-width: 1024px) 470px, calc(100vw - 150px)" quality={90} class="w-full h-auto" loading="lazy" decoding="async" data-parallax />
+            <Image src={ticketsWeb} alt="ABR Tickets on a laptop: ticket list and dashboard" widths={[600, 900, 1200, 1555]} sizes="(min-width: 1024px) 470px, calc(100vw - 150px)" quality={92} class="w-full h-auto" loading="lazy" decoding="async" data-parallax />
           </div>
         </div>
         <div class="absolute right-5 bottom-5 w-[100px] sm:static sm:w-auto sm:flex-[0_0_150px] bg-ink rounded-[26px] p-[7px] shadow-[0_24px_50px_rgba(20,20,20,0.22)]">
           <div class="relative overflow-hidden rounded-[20px]" data-frame>
-            <Image src={ticketsMobile} alt="ABR Tickets ticket detail on Android" widths={[300, 600, 700]} sizes="150px" quality={90} class="w-full h-auto" loading="lazy" decoding="async" data-parallax />
+            <Image src={ticketsMobile} alt="ABR Tickets on Android" widths={[300, 500, 841]} sizes="150px" quality={92} class="w-full h-auto" loading="lazy" decoding="async" data-parallax />
           </div>
         </div>
         </div>
@@ -83,7 +83,7 @@ const departments = [
       <div class="panel flex-[1_1_600px] min-w-0 rounded-[36px] p-5 sm:p-11 flex min-h-[380px] sm:min-h-[480px] relative overflow-hidden" data-panel>
         <Pour color="#141414" />
         <div class="relative z-10 flex-1 flex justify-center items-end" data-panel-content>
-          <div class="w-full max-w-[600px]"><Browser src={finance} alt="Project finance dashboard" /></div>
+          <div class="w-full max-w-[600px]"><Browser src={finance} alt="Project finance dashboard" widths={[600, 900, 1200, 1448]} /></div>
         </div>
       </div>
     </article>
@@ -125,10 +125,10 @@ const departments = [
         <div class="relative z-10 flex-1 flex justify-center items-end" data-panel-content>
         <div class="relative w-full max-w-[600px] h-[260px] sm:h-[420px]">
           <div class="absolute left-0 top-0 w-[78%]" data-window="back">
-            <Browser src={abrHome} alt="somosabr.com.mx homepage" sizes="(min-width: 1024px) 470px, 70vw" />
+            <Browser src={abrHome} alt="somosabr.com.mx homepage" sizes="(min-width: 1024px) 470px, 70vw" widths={[600, 900, 1200, 1800]} />
           </div>
           <div class="absolute right-0 bottom-0 w-[66%]" data-window="front">
-            <Browser src={obraHome} alt="obra.somosabr.com.mx homepage" sizes="(min-width: 1024px) 400px, 60vw" shadow />
+            <Browser src={obraHome} alt="obra.somosabr.com.mx homepage" sizes="(min-width: 1024px) 400px, 60vw" widths={[600, 900, 1200, 1800]} shadow />
           </div>
         </div>
         </div>
