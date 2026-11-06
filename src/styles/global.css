@@ -74,3 +74,16 @@
   transition: transform 0.2s;
 }
 .skip-link:focus { transform: none; color: var(--color-paper); }
+
+/* Motion scaffolding */
+.js [data-hero-title], .js [data-hero-copy], .js [data-hero-art] { visibility: hidden; }
+.hero-line-mask, .how-char-mask {
+  padding: 0.14em 0.04em;
+  margin: -0.14em -0.04em;
+}
+.rm-fade { opacity: 0; transition: opacity 0.35s ease-out; }
+.rm-fade.is-in { opacity: 1; }
+@media (prefers-reduced-motion: reduce) {
+  .js [data-hero-title], .js [data-hero-copy], .js [data-hero-art] { visibility: visible; }
+  html { scroll-behavior: auto; }
+}

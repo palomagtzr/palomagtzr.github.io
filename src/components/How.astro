@@ -2,7 +2,8 @@
 import DropLogo from './DropLogo.astro';
 const word = 'display text-[clamp(4rem,12vw,11rem)] leading-[0.82] tracking-[-0.06em]';
 ---
-<section id="how" class="container-x pt-24 pb-24 sm:pt-[120px] sm:pb-[110px] flex flex-col scroll-mt-20" aria-labelledby="how-title" data-section="how">
+<section id="how" class="overflow-x-clip scroll-mt-20" aria-labelledby="how-title" data-section="how">
+  <div class="container-x pt-24 pb-24 sm:pt-[120px] sm:pb-[110px] flex flex-col">
   <div class="flex justify-between gap-4 pb-7 label">
     <h2 id="how-title" class="m-0 font-semibold label">How I work</h2>
     <span class="text-ink-3">Three habits</span>
@@ -30,5 +31,6 @@ const word = 'display text-[clamp(4rem,12vw,11rem)] leading-[0.82] tracking-[-0.
     <span class="label text-ink-3 self-start pt-[18px]" aria-hidden="true">(3)</span>
     <span class={word} data-word>Write it down.</span>
     <p class="m-0 mb-2.5 flex-[1_1_240px] max-w-[320px] text-[18px] leading-[1.5] text-ink-2" data-habit-copy>Specs and decisions go on paper, so nothing lives only in my head.</p>
+  </div>
   </div>
 </section>

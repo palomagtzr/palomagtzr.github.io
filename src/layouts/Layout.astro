@@ -43,5 +43,6 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
   <body>
     <a href="#main" class="skip-link label font-semibold">Skip to content</a>
     <slot />
+    <script>import '../scripts/main';</script>
   </body>
 </html>
