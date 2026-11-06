@@ -77,7 +77,7 @@ export function initFooter() {
       .to(drop, { scale: 1, duration: 0.3, ease: 'power1.out' }, 0)
       .to(drop, { y: FLOOR, scaleY: 1.4, scaleX: 0.9, duration: 0.6, ease: 'power2.in' }, 0.3)
       .to(drop, { scaleY: 0.3, scaleX: 1.8, autoAlpha: 0, duration: 0.2, ease: 'power2.out' }, 0.9)
-      .fromTo(bits, { x: tx, y: FLOOR, autoAlpha: 1, scale: 0.5 }, { x: (i) => tx + (i - 1) * gsap.utils.random(34, 60), y: FLOOR - gsap.utils.random(28, 50), scale: 1, duration: 0.2, ease: 'power2.out', stagger: 0.015 }, 0.88)
+      .fromTo(bits, { x: tx, y: FLOOR, autoAlpha: 1, scale: 0.5 }, { x: (i) => tx + (i - 1) * gsap.utils.random(34, 60), y: FLOOR - gsap.utils.random(28, 50), scale: 1, duration: 0.2, ease: 'power2.out', stagger: 0.015, immediateRender: false }, 0.88)
       .to(bits, { y: FLOOR + 8, autoAlpha: 0, duration: 0.25, ease: 'power2.in' }, '>');
   }
 
