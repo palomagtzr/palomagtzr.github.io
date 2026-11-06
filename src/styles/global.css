@@ -118,15 +118,6 @@
 }
 [tabindex="-1"]:focus { outline: none; }
 
-/* Footer wordmark as live SVG text */
-.wm-text {
-  font-family: var(--font-display);
-  font-weight: 800;
-  font-size: 150px;
-  letter-spacing: -0.045em;
-  font-variation-settings: "opsz" 96;
-}
-
 /* Sticky project index */
 .index-link { transition: color 0.3s; }
 .index-link.is-active { color: var(--color-ink); font-weight: 600; }
