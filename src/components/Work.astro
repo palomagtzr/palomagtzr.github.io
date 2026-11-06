@@ -1,6 +1,7 @@
 ---
 import { Image } from 'astro:assets';
 import Browser from './Browser.astro';
+import Drip from './Drip.astro';
 import ticketsWeb from '../assets/tickets_web.jpg';
 import ticketsMobile from '../assets/tickets_mobile.jpg';
 import finance from '../assets/finance.jpg';
@@ -25,35 +26,35 @@ const departments = [
 
     <article class="flex flex-wrap items-center gap-10 sm:gap-14" data-project>
       <div class="panel flex-[1_1_600px] min-w-0 rounded-[36px] bg-slime p-5 sm:p-11 flex justify-center items-end gap-[22px] min-h-[380px] sm:min-h-[480px] relative" data-panel>
-        <div class="flex-auto max-w-[470px] bg-ink rounded-[14px] p-2 shadow-[0_24px_50px_rgba(20,20,20,0.22)] mr-[88px] sm:mr-0">
-          <div class="frame relative overflow-hidden rounded-[7px] h-[220px] sm:h-[300px]" data-frame>
-            <Image src={ticketsWeb} alt="ABR Tickets board on web" widths={[480, 800, 1000]} sizes="(min-width: 1024px) 470px, 90vw" class="w-full h-full object-cover object-left-top" loading="lazy" decoding="async" data-parallax />
+        <div class="flex-auto max-w-[470px] bg-ink rounded-[14px] p-2 shadow-[0_24px_50px_rgba(20,20,20,0.22)] mr-[80px] sm:mr-0">
+          <div class="relative overflow-hidden rounded-[7px]" data-frame>
+            <Image src={ticketsWeb} alt="ABR Tickets board on web" widths={[800, 1200, 1600, 2400]} sizes="(min-width: 1024px) 470px, calc(100vw - 150px)" quality={90} class="w-full h-auto" loading="lazy" decoding="async" data-parallax />
           </div>
         </div>
-        <div class="absolute right-5 bottom-5 w-[110px] sm:static sm:w-auto sm:flex-[0_0_150px] bg-ink rounded-[26px] p-[7px] shadow-[0_24px_50px_rgba(20,20,20,0.22)]">
-          <div class="frame relative overflow-hidden rounded-[20px] h-[228px] sm:h-[310px]" data-frame>
-            <Image src={ticketsMobile} alt="ABR Tickets ticket detail on Android" widths={[300, 600]} sizes="150px" class="w-full h-full object-cover object-top" loading="lazy" decoding="async" data-parallax />
+        <div class="absolute right-5 bottom-5 w-[100px] sm:static sm:w-auto sm:flex-[0_0_150px] bg-ink rounded-[26px] p-[7px] shadow-[0_24px_50px_rgba(20,20,20,0.22)]">
+          <div class="relative overflow-hidden rounded-[20px]" data-frame>
+            <Image src={ticketsMobile} alt="ABR Tickets ticket detail on Android" widths={[300, 600, 700]} sizes="150px" quality={90} class="w-full h-auto" loading="lazy" decoding="async" data-parallax />
           </div>
         </div>
       </div>
-      <div class="flex-[1_1_320px] min-w-0 flex flex-col gap-[18px]">
+      <div class="flex-[1_1_320px] min-w-0 flex flex-col gap-[18px]" data-project-copy>
         <span class="display text-[64px] sm:text-[72px] leading-[0.8] tracking-[-0.05em]" aria-hidden="true" data-number>01</span>
         <h3 class="m-0 display text-[36px] sm:text-[44px] tracking-[-0.035em] leading-none"><span class="sr-only">Project 01: </span>ABR Tickets</h3>
-        <p class="m-0 text-[17px] leading-[1.55] text-ink-2">Maintenance ticketing for field technicians, admins and clients, built to replace a paid tool that didn't fit how the team works.</p>
+        <p class="m-0 text-[17px] leading-[1.55] text-ink-2">Replaced a paid ticketing tool the team had outgrown. Five user roles, six ticket states, automatic SLA tracking, client sign-off and PDF/Excel exports, on web and Android.</p>
         <p class="m-0 label text-ink-3 leading-[1.8]">Product owner / UX &amp; UI / Sole developer<br />Web + Android · Internal tool · Shown with sample data</p>
       </div>
     </article>
 
     <article class="flex flex-wrap-reverse items-center gap-10 sm:gap-14" data-project>
-      <div class="flex-[1_1_320px] min-w-0 flex flex-col gap-[18px]">
+      <div class="flex-[1_1_320px] min-w-0 flex flex-col gap-[18px]" data-project-copy>
         <span class="display text-[64px] sm:text-[72px] leading-[0.8] tracking-[-0.05em]" aria-hidden="true" data-number>02</span>
         <h3 class="m-0 display text-[36px] sm:text-[44px] tracking-[-0.035em] leading-none"><span class="sr-only">Project 02: </span>Construction finance platform</h3>
-        <p class="m-0 text-[17px] leading-[1.55] text-ink-2">Scattered spreadsheets became one place where finance and partners see the same numbers.</p>
+        <p class="m-0 text-[17px] leading-[1.55] text-ink-2">One source of truth for 25+ construction projects that used to live in spreadsheets: role-based access, bulk Excel import, reports, and a data migration verified to the cent.</p>
         <p class="m-0 label text-ink-3 leading-[1.8]">Product owner / Data model / Developer<br />Web · Internal tool · Shown with sample data</p>
       </div>
       <div class="panel flex-[1_1_600px] min-w-0 rounded-[36px] bg-ink p-5 sm:p-11 flex justify-center items-end min-h-[380px] sm:min-h-[480px]" data-panel>
         <div class="w-full max-w-[600px]">
-          <Browser src={finance} alt="Project finance dashboard" height={360} />
+          <Browser src={finance} alt="Project finance dashboard" />
         </div>
       </div>
     </article>
@@ -61,10 +62,10 @@ const departments = [
     <article class="flex flex-wrap items-center gap-10 sm:gap-14" data-project>
       <div class="panel flex-[1_1_600px] min-w-0 rounded-[36px] bg-white border-[1.5px] border-ink p-5 sm:p-11 flex justify-center items-end min-h-[380px] sm:min-h-[480px]" data-panel>
         <div class="w-full max-w-[600px]">
-          <Browser src={ops} alt="Visit schedule dashboard" height={360} />
+          <Browser src={ops} alt="Visit schedule dashboard" />
         </div>
       </div>
-      <div class="flex-[1_1_320px] min-w-0 flex flex-col gap-[18px]">
+      <div class="flex-[1_1_320px] min-w-0 flex flex-col gap-[18px]" data-project-copy>
         <span class="display text-[64px] sm:text-[72px] leading-[0.8] tracking-[-0.05em]" aria-hidden="true" data-number>03</span>
         <h3 class="m-0 display text-[36px] sm:text-[44px] tracking-[-0.035em] leading-none"><span class="sr-only">Project 03: </span>ABR Operaciones</h3>
         <p class="m-0 text-[17px] leading-[1.55] text-ink-2">Monthly visit schedules, preventive maintenance and photo evidence for every branch of a facilities contract, so coordinators validate work instead of chasing it.</p>
@@ -73,7 +74,7 @@ const departments = [
     </article>
 
     <article class="flex flex-wrap-reverse items-center gap-10 sm:gap-14" data-project>
-      <div class="flex-[1_1_320px] min-w-0 flex flex-col gap-[18px]">
+      <div class="flex-[1_1_320px] min-w-0 flex flex-col gap-[18px]" data-project-copy>
         <span class="display text-[64px] sm:text-[72px] leading-[0.8] tracking-[-0.05em]" aria-hidden="true" data-number>04</span>
         <h3 class="m-0 display text-[36px] sm:text-[44px] tracking-[-0.035em] leading-none"><span class="sr-only">Project 04: </span>A.R. Monex Pro Cycling Team</h3>
         <p class="m-0 text-[17px] leading-[1.55] text-ink-2">The only Mexican pro cycling team racing in Europe. I built the membership checkout behind their existing site: Stripe payments routed to the right legal entity and e-invoices issued automatically.</p>
@@ -82,23 +83,23 @@ const departments = [
       </div>
       <div class="panel flex-[1_1_600px] min-w-0 rounded-[36px] bg-ink p-5 sm:p-11 flex justify-center items-end min-h-[380px] sm:min-h-[480px]" data-panel>
         <div class="w-full max-w-[600px]">
-          <Browser src={monex} alt="Membership checkout on arprocycling.com" height={360} />
+          <Browser src={monex} alt="Membership checkout on arprocycling.com" />
         </div>
       </div>
     </article>
 
     <article class="flex flex-wrap items-center gap-10 sm:gap-14" data-project>
       <div class="panel flex-[1_1_600px] min-w-0 rounded-[36px] bg-slime p-5 sm:p-11 flex justify-center items-end min-h-[380px] sm:min-h-[480px]" data-panel>
-        <div class="relative w-full max-w-[600px] h-[300px] sm:h-[400px]">
+        <div class="relative w-full max-w-[600px] h-[260px] sm:h-[420px]">
           <div class="absolute left-0 top-0 w-[78%]" data-window="back">
-            <Browser src={abrHome} alt="somosabr.com.mx homepage" height={250} sizes="(min-width: 1024px) 470px, 70vw" />
+            <Browser src={abrHome} alt="somosabr.com.mx homepage" sizes="(min-width: 1024px) 470px, 70vw" />
           </div>
           <div class="absolute right-0 bottom-0 w-[66%]" data-window="front">
-            <Browser src={obraHome} alt="obra.somosabr.com.mx homepage" height={210} sizes="(min-width: 1024px) 400px, 60vw" shadow />
+            <Browser src={obraHome} alt="obra.somosabr.com.mx homepage" sizes="(min-width: 1024px) 400px, 60vw" shadow />
           </div>
         </div>
       </div>
-      <div class="flex-[1_1_320px] min-w-0 flex flex-col gap-[18px]">
+      <div class="flex-[1_1_320px] min-w-0 flex flex-col gap-[18px]" data-project-copy>
         <span class="display text-[64px] sm:text-[72px] leading-[0.8] tracking-[-0.05em]" aria-hidden="true" data-number>05</span>
         <h3 class="m-0 display text-[36px] sm:text-[44px] tracking-[-0.035em] leading-none"><span class="sr-only">Project 05: </span>ABR brand websites</h3>
         <p class="m-0 text-[17px] leading-[1.55] text-ink-2">Two sites for a maintenance and construction group that looks after brands like Soho House and Tim Hortons across 11 Mexican states.</p>
@@ -108,7 +109,7 @@ const departments = [
     </article>
 
     <article class="panel rounded-[36px] bg-ink text-paper p-7 sm:px-11 sm:py-14 flex flex-wrap gap-10 sm:gap-14 items-center" data-project data-panel>
-      <div class="flex-[1_1_320px] min-w-0 flex flex-col gap-[18px]">
+      <div class="flex-[1_1_320px] min-w-0 flex flex-col gap-[18px]" data-project-copy>
         <span class="display text-[64px] sm:text-[72px] leading-[0.8] tracking-[-0.05em]" aria-hidden="true" data-number>06</span>
         <h3 class="m-0 display text-[36px] sm:text-[44px] tracking-[-0.035em] leading-none"><span class="sr-only">Project 06: </span>Process redesign</h3>
         <p class="m-0 text-[17px] leading-[1.55] text-ink-soft">Co-led the diagnosis of how four departments in a group of 200+ people really work, before deciding where technology should help.</p>
@@ -126,5 +127,14 @@ const departments = [
         ))}
       </div>
     </article>
+  </div>
+  <!-- Work drips over the next section: a slime band with a wavy edge and three scrubbed drips. -->
+  <div class="relative mt-16 sm:mt-24 h-10 sm:h-14 bg-linear-to-b from-slime to-amber" aria-hidden="true" data-band>
+    <svg class="absolute left-0 right-0 top-full w-full h-[26px] sm:h-[36px] block" viewBox="0 0 1440 36" preserveAspectRatio="none" focusable="false">
+      <path d="M0 0 L1440 0 L1440 10 C1380 10 1360 30 1290 28 C1220 26 1200 6 1130 8 C1060 10 1040 32 970 30 C900 28 880 4 810 6 C740 8 720 34 650 32 C580 30 560 8 490 10 C420 12 400 30 330 28 C260 26 240 6 170 8 C100 10 60 20 0 14 Z" fill="#E0A100"></path>
+    </svg>
+    <Drip class="absolute top-full left-[18%]" width={16} height={120} data-band-drip />
+    <Drip class="absolute top-full left-[52%]" width={12} height={80} data-band-drip />
+    <Drip class="absolute top-full left-[79%]" width={18} height={150} data-band-drip />
   </div>
 </section>

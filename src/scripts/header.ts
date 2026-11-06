@@ -3,7 +3,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import type Lenis from 'lenis';
 import { env, q, qa } from './env';
 
-/** Hide on scroll down, show on scroll up, mark the active section. */
+/** Hide on scroll down, show on scroll up, mark the active section, animate the slime edge. */
 export function initHeader(lenis: Lenis | null) {
   const header = q('#site-header');
   if (!header) return;
@@ -42,4 +42,52 @@ export function initHeader(lenis: Lenis | null) {
       history.pushState(null, '', a.hash);
     });
   });
+
+  if (lenis) initSlimeEdge(lenis, header);
+}
+
+/**
+ * The drips on the header's slime edge stretch with scroll velocity and snap
+ * back with an elastic bounce when you stop. Every 8–12 s of scrolling one
+ * drip lets go: a small drop falls a few pixels and fades.
+ */
+function initSlimeEdge(lenis: Lenis, header: HTMLElement) {
+  const drips = qa<SVGSVGElement>('[data-edge-drip]', header);
+  if (!drips.length) return;
+  const setters = drips.map((d) => gsap.quickSetter(d, 'scaleY'));
+  let stretch = 0;
+  let velocity = 0;
+  let moving = false;
+  let scrollTime = 0;
+  let nextRelease = gsap.utils.random(8, 12);
+  let lastT = 0;
+
+  lenis.on('scroll', ({ velocity: v }) => { velocity = v; });
+
+  gsap.ticker.add((t) => {
+    const dt = lastT ? Math.min(0.05, t - lastT) : 0.016;
+    lastT = t;
+    const target = gsap.utils.clamp(0, 1, Math.abs(velocity) / 28);
+    velocity *= 0.9;
+    if (target > 0.02) {
+      if (!moving) { moving = true; gsap.killTweensOf(drips); }
+      stretch += (target - stretch) * 0.18;
+      setters.forEach((set, i) => set(1 + stretch * (0.9 + (i % 3) * 0.25)));
+      scrollTime += dt;
+      if (scrollTime > nextRelease) { scrollTime = 0; nextRelease = gsap.utils.random(8, 12); release(drips[Math.floor(Math.random() * drips.length)]); }
+    } else if (moving) {
+      moving = false;
+      stretch = 0;
+      gsap.to(drips, { scaleY: 1, duration: 1.1, ease: 'elastic.out(1, 0.35)', overwrite: true });
+    }
+  });
+
+  function release(from: SVGSVGElement) {
+    const drop = from.cloneNode(true) as SVGSVGElement;
+    drop.removeAttribute('data-edge-drip');
+    drop.style.height = '12px';
+    from.parentElement!.appendChild(drop);
+    gsap.set(drop, { y: from.getBoundingClientRect().height - 4, scaleY: 1 });
+    gsap.to(drop, { y: '+=56', autoAlpha: 0, duration: 0.8, ease: 'power2.in', onComplete: () => drop.remove() });
+  }
 }
