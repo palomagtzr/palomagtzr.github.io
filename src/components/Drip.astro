@@ -1,0 +1,8 @@
+---
+/** One hanging drip, positioned by the parent. Stretches with scaleY from the top. */
+interface Props { class?: string; width?: number; height?: number; style?: string; [key: string]: unknown }
+const { class: cls = '', width = 14, height = 44, style, ...rest } = Astro.props;
+---
+<svg class:list={['block overflow-visible origin-top', cls]} width={width} height={height} viewBox="-16 0 32 100" preserveAspectRatio="none" aria-hidden="true" focusable="false" style={style} {...rest}>
+  <use href="#slime-drip"></use>
+</svg>

@@ -3,7 +3,7 @@ import DropLogo from './DropLogo.astro';
 const word = 'display text-[clamp(4rem,12vw,11rem)] leading-[0.82] tracking-[-0.06em]';
 ---
 <section id="how" class="overflow-x-clip scroll-mt-20" aria-labelledby="how-title" data-section="how">
-  <div class="container-x pt-24 pb-24 sm:pt-[120px] sm:pb-[110px] flex flex-col">
+  <div class="container-x pt-28 pb-24 sm:pt-[140px] sm:pb-[110px] flex flex-col">
   <div class="flex justify-between gap-4 pb-7 label">
     <h2 id="how-title" class="m-0 font-semibold label">How I work</h2>
     <span class="text-ink-3">Three habits</span>
@@ -19,7 +19,7 @@ const word = 'display text-[clamp(4rem,12vw,11rem)] leading-[0.82] tracking-[-0.
     <p class="m-0 mb-2.5 flex-[1_1_240px] max-w-[320px] text-[18px] leading-[1.5] text-ink-2 text-right" data-habit-copy>If people don't enjoy using it, it doesn't matter how well it works.</p>
     <div class={`${word} inline-flex items-start gap-[0.08em]`}>
       <div class="relative inline-block px-[0.12em] pt-[0.04em] pb-[0.1em] rounded-[0.14em] -rotate-2" data-design>
-        <span class="absolute inset-0 slime-filter" aria-hidden="true"><span class="absolute inset-0 rounded-[0.14em] bg-linear-to-b from-slime to-amber" data-design-smear></span></span>
+        <span class="slime-block absolute inset-0 rounded-[0.14em]" aria-hidden="true" data-design-smear></span>
         <h3 class="m-0 relative" data-word>Design.</h3>
       </div>
       <DropLogo class="w-[0.42em] h-[0.42em] rotate-[12deg] shrink-0" />

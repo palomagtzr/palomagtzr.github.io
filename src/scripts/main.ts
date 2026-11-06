@@ -6,18 +6,17 @@ import { env } from './env';
 import { initHeader } from './header';
 import { initHero } from './hero';
 import { initProjects } from './projects';
-import { initHow } from './how';
+import { initBand, initHow } from './how';
 import { initToolkit } from './toolkit';
 import { initFooter } from './footer';
 import { initReduced } from './reduced';
-import { initLoader } from './loader';
+import { initIntro } from './intro';
 import { initCursor } from './cursor';
-import { initSlimeBreathing } from './slime';
 
 gsap.registerPlugin(ScrollTrigger, SplitText);
 
 if (env.reduced) {
-  document.querySelector('[data-loader]')?.remove();
+  document.querySelector('[data-intro]')?.remove();
   initReduced();
   initHeader(null);
 } else {
@@ -26,16 +25,15 @@ if (env.reduced) {
   gsap.ticker.add((time) => lenis.raf(time * 1000));
   gsap.ticker.lagSmoothing(0);
 
-  const loaded = initLoader(lenis);
-  const ready = Promise.all([document.fonts.ready, loaded]).then(() => undefined);
-
+  const introShown = !document.documentElement.classList.contains('no-loader');
+  const intro = document.fonts.ready.then(() => initIntro(lenis));
+  initHero(intro, introShown);
   initHeader(lenis);
-  initHero(ready);
   initProjects();
+  initBand();
   initHow();
   initToolkit();
   initFooter();
   initCursor();
-  initSlimeBreathing();
   window.addEventListener('load', () => ScrollTrigger.refresh());
 }

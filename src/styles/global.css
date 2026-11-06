@@ -76,32 +76,44 @@
 .skip-link:focus { transform: none; color: var(--color-paper); }
 
 /* Motion scaffolding */
-.js [data-hero-title], .js [data-hero-copy], .js [data-hero-art] { visibility: hidden; }
-.hero-line-mask, .how-char-mask {
+.js.no-loader [data-hero-title], .js.no-loader [data-hero-copy], .js.no-loader [data-hero-art] { visibility: hidden; }
+.hero-line-mask, .how-word-mask {
   padding: 0.14em 0.04em;
   margin: -0.14em -0.04em;
 }
 .rm-fade { opacity: 0; transition: opacity 0.35s ease-out; }
 .rm-fade.is-in { opacity: 1; }
 @media (prefers-reduced-motion: reduce) {
-  .js [data-hero-title], .js [data-hero-copy], .js [data-hero-art] { visibility: visible; }
+  .js.no-loader [data-hero-title], .js.no-loader [data-hero-copy], .js.no-loader [data-hero-art] { visibility: visible; }
   html { scroll-behavior: auto; }
 }
 
-/* Loader: only with JS, only on the first visit of the session, never with reduced motion */
-#loader { display: none; }
-.js #loader { display: flex; }
-.js.no-loader #loader { display: none; }
-@media (prefers-reduced-motion: reduce) { .js #loader { display: none; } }
+/* Intro: only with JS, only on the first visit of the session, never with reduced motion */
+#intro { display: none; }
+.js #intro { display: block; }
+.js.no-loader #intro { display: none; }
+@media (prefers-reduced-motion: reduce) { .js #intro { display: none; } }
 
-/* Slime */
-.slime-filter, .hl-slime { filter: url(#slime-gloss); }
+/* Slime, cartoon gloss: gradient fill, darker lower edge, a white highlight stroke. No filters. */
+.slime-block {
+  background: linear-gradient(to bottom, #FFD23F, #E0A100);
+  box-shadow: inset 0 -0.07em 0 rgba(184, 127, 0, 0.4);
+}
+.slime-block::before {
+  content: "";
+  position: absolute;
+  top: 0.1em;
+  left: 0.12em;
+  width: 0.34em;
+  height: 0.075em;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.85);
+  transform: rotate(-6deg);
+}
 .js .hl-smear { transform: scaleX(0); transform-origin: 0% 50%; }
-.js .hl-drip { transform: scaleY(0); transform-origin: 50% 0%; }
-.js .hl-fall { opacity: 0; }
+.js [data-hl-drip] { transform: scaleY(0); }
 @media (prefers-reduced-motion: reduce) {
   .js .hl-smear { transform: none; }
-  .js .hl-drip { transform: none; }
+  .js [data-hl-drip] { transform: none; }
 }
-.wordmark-shine { filter: url(#wordmark-shine); }
 [tabindex="-1"]:focus { outline: none; }
