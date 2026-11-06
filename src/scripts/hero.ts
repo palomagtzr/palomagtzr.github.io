@@ -35,7 +35,7 @@ export function initHero(ready: Promise<void>, introShown: boolean) {
     const targets = [split.lines, copy.children, blob, photo, logo];
     hint(targets);
     gsap.timeline({ defaults: { ease: 'power4.out' }, onComplete: () => unhint(targets) })
-      .from(split.lines, { yPercent: 115, duration: 1, stagger: 0.12 }, 0.1)
+      .from(split.lines, { yPercent: 115, duration: 1, stagger: { each: 0.12, from: 'end' } }, 0.25)
       .add(() => { split.revert(); animateHighlight(); }, 1.0)
       .to(copy.children, { autoAlpha: 1, y: 0, duration: 0.8, stagger: 0.1 }, 0.6)
       .to(blob, { autoAlpha: 1, scale: 1, duration: 0.9, ease: 'power3.out' }, 0.3)

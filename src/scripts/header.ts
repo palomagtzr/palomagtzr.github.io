@@ -55,6 +55,16 @@ function initSlimeEdge(lenis: Lenis, header: HTMLElement) {
   const drips = qa<SVGSVGElement>('[data-edge-drip]', header);
   if (!drips.length) return;
   const setters = drips.map((d) => gsap.quickSetter(d, 'scaleY'));
+  // A pool of three falling drops, created once and reused (no DOM churn on release).
+  const pool = [0, 1, 2].map(() => {
+    const drop = drips[0].cloneNode(true) as SVGSVGElement;
+    drop.removeAttribute('data-edge-drip');
+    drop.style.height = '12px';
+    drop.style.visibility = 'hidden';
+    drips[0].parentElement!.appendChild(drop);
+    return drop;
+  });
+  let next = 0;
   let stretch = 0;
   let velocity = 0;
   let moving = false;
@@ -83,11 +93,10 @@ function initSlimeEdge(lenis: Lenis, header: HTMLElement) {
   });
 
   function release(from: SVGSVGElement) {
-    const drop = from.cloneNode(true) as SVGSVGElement;
-    drop.removeAttribute('data-edge-drip');
-    drop.style.height = '12px';
-    from.parentElement!.appendChild(drop);
-    gsap.set(drop, { y: from.getBoundingClientRect().height - 4, scaleY: 1 });
-    gsap.to(drop, { y: '+=56', autoAlpha: 0, duration: 0.8, ease: 'power2.in', onComplete: () => drop.remove() });
+    const drop = pool[next++ % pool.length];
+    gsap.killTweensOf(drop);
+    drop.style.left = from.style.left;
+    gsap.set(drop, { y: from.getBoundingClientRect().height - 4, scaleY: 1, scaleX: 1, autoAlpha: 1 });
+    gsap.to(drop, { y: '+=56', autoAlpha: 0, duration: 0.8, ease: 'power2.in' });
   }
 }

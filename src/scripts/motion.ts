@@ -1,9 +1,15 @@
 import gsap from 'gsap';
 
-type Targets = Element | Element[] | (Element | Element[] | null | undefined)[] | null | undefined;
+type Target = Element | ArrayLike<Element> | null | undefined;
+type Targets = Target | Target[];
+type Styled = HTMLElement | SVGElement;
 
-const flatten = (t: Targets): HTMLElement[] =>
-  (Array.isArray(t) ? t.flat(2) : [t]).filter((el): el is HTMLElement => el instanceof Element);
+const flatten = (t: Targets): Styled[] => {
+  const list: Target[] = Array.isArray(t) ? t : [t];
+  return list
+    .flatMap((x) => (x instanceof Element ? [x] : x ? Array.from(x) : []))
+    .filter((el): el is Styled => el instanceof HTMLElement || el instanceof SVGElement);
+};
 
 /** will-change only while something is actually animating. */
 export const hint = (targets: Targets) => flatten(targets).forEach((el) => (el.style.willChange = 'transform'));
