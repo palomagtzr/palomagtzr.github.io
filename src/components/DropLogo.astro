@@ -1,0 +1,17 @@
+---
+/** Inline logo: black drop coated with yellow slime. */
+interface Props { class?: string; label?: string }
+const { class: cls = '', label } = Astro.props;
+---
+<svg
+  class={`drop-logo ${cls}`}
+  viewBox="0 0 512 512"
+  focusable="false"
+  aria-hidden={label ? undefined : 'true'}
+  role={label ? 'img' : undefined}
+  aria-label={label}
+>
+  <path class="drop-body" d="M256 58C224 111 139 205 139 300C139 374 190 427 256 427C322 427 373 374 373 300C373 205 288 111 256 58Z" fill="#000"></path>
+  <path class="drop-slime" d="M164 224C181 196 205 173 225 146C239 128 249 110 256 97C267 119 282 143 302 165C323 188 344 207 356 232C363 246 365 260 358 271C351 283 337 280 332 267C327 254 335 239 326 231C318 224 310 238 306 251C301 268 307 286 296 299C286 311 272 305 269 291C266 278 274 263 265 255C256 247 248 261 245 276C241 296 249 315 237 329C225 343 210 334 210 317C210 301 219 283 210 275C201 267 190 284 185 296C178 311 168 311 160 301C149 286 154 250 164 224Z" fill="#FFD23F"></path>
+  <path d="M238 142C222 165 203 187 188 210C181 221 176 233 174 244" fill="none" stroke="#FFF0A6" stroke-width="8" stroke-linecap="round" opacity=".85"></path>
+</svg>

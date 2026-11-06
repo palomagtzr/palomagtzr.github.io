@@ -1,0 +1,47 @@
+---
+import '../styles/global.css';
+import '@fontsource-variable/bricolage-grotesque';
+import '@fontsource/inter/latin-400.css';
+import '@fontsource/inter/latin-500.css';
+import '@fontsource/inter/latin-600.css';
+import bricolageWoff2 from '@fontsource-variable/bricolage-grotesque/files/bricolage-grotesque-latin-wght-normal.woff2?url';
+import inter400Woff2 from '@fontsource/inter/files/inter-latin-400-normal.woff2?url';
+
+const title = 'Paloma Gutiérrez Ricaud — Systems engineer & product designer';
+const description =
+  'I turn how people really work into products they enjoy using, from the first conversation to launch. Systems engineer and product designer. Mexico City, moving to Barcelona.';
+const ogImage = new URL('/og.png', Astro.site);
+const canonical = new URL(Astro.url.pathname, Astro.site);
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    <link rel="icon" href="/drop_logo.svg" type="image/svg+xml" />
+    <meta name="theme-color" content="#F6F4EE" />
+    <meta name="color-scheme" content="light" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:image:width" content="1800" />
+    <meta property="og:image:height" content="945" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
+    <link rel="preload" as="font" type="font/woff2" href={bricolageWoff2} crossorigin />
+    <link rel="preload" as="font" type="font/woff2" href={inter400Woff2} crossorigin />
+    <script is:inline>document.documentElement.classList.add('js');</script>
+    <slot name="head" />
+  </head>
+  <body>
+    <a href="#main" class="skip-link label font-semibold">Skip to content</a>
+    <slot />
+  </body>
+</html>
