@@ -4,14 +4,16 @@ import Browser from './Browser.astro';
 import Drip from './Drip.astro';
 import Counter from './Counter.astro';
 import Pour from './Pour.astro';
+import Flow from './Flow.astro';
 
 const index = [
   ['01', 'ABR Tickets'],
   ['02', 'Construction finance platform'],
   ['03', 'ABR Operaciones'],
-  ['04', 'A.R. Monex Pro Cycling Team'],
-  ['05', 'ABR brand websites'],
-  ['06', 'Process redesign'],
+  ['04', 'S2G Energy'],
+  ['05', 'A.R. Monex Pro Cycling Team'],
+  ['06', 'ABR brand websites'],
+  ['07', 'Process redesign'],
 ];
 import ticketsWeb from '../assets/tickets_web.png';
 import ticketsMobile from '../assets/tickets_mobile.png';
@@ -32,7 +34,7 @@ const departments = [
   <div class="container-x pt-8 sm:pt-12 flex flex-wrap items-end justify-between gap-x-6 gap-y-3">
     <div class="flex items-end gap-4 sm:gap-5">
       <h2 id="work-title" class="m-0 display text-[clamp(2.4rem,6vw,5.4rem)] tracking-[-0.045em] leading-[0.95] relative inline-block pr-[0.12em]">Selected work<Drip class="absolute right-[0.1em] -bottom-[0.3em]" width={13} height={50} data-title-drip /></h2>
-      <span class="label text-ink-3 pb-[0.3em]">(06)</span>
+      <span class="label text-ink-3 pb-[0.3em]">(07)</span>
     </div>
     <span class="label text-ink-3 pb-[0.3em]">2024 — 2026</span>
   </div>
@@ -106,7 +108,22 @@ const departments = [
     <article id="project-04" class="flex flex-wrap-reverse items-center gap-10 sm:gap-14 scroll-mt-24" data-project>
       <div class="flex-[1_1_320px] min-w-0 flex flex-col gap-[18px]" data-project-copy>
         <Counter value="04" class="text-[64px] sm:text-[72px]" />
-        <h3 class="m-0 display text-[36px] sm:text-[44px] tracking-[-0.035em] leading-none"><span class="sr-only">Project 04: </span>A.R. Monex Pro Cycling Team</h3>
+        <h3 class="m-0 display text-[36px] sm:text-[44px] tracking-[-0.035em] leading-none"><span class="sr-only">Project 04: </span>S2G Energy: unified energy platform</h3>
+        <p class="m-0 text-[17px] leading-[1.55] text-ink-2">University practicum for S2G Energy's industrial division. I led a team of four as project manager, Scrum Master and QA: two-week sprints in Azure DevOps, weekly reviews with the client, and the documentation that let their engineers pick up the platform where we left it.</p>
+        <p class="m-0 label text-ink-3 leading-[1.8]">Project manager / Scrum Master / QA · Team of 4<br />Python ETL · Azure SQL · FastAPI · Next.js · Advanced prototype, 2025</p>
+      </div>
+      <div class="panel flex-[1_1_600px] min-w-0 rounded-[36px] border-[1.5px] border-ink p-6 sm:p-11 flex min-h-[380px] sm:min-h-[480px] relative overflow-hidden" data-panel>
+        <Pour color="#F6F4EE" />
+        <div class="relative z-10 flex-1 flex justify-center items-center" data-panel-content>
+          <div class="w-full max-w-[600px]"><Flow /></div>
+        </div>
+      </div>
+    </article>
+
+    <article id="project-05" class="flex flex-wrap items-center gap-10 sm:gap-14 scroll-mt-24" data-project>
+      <div class="flex-[1_1_320px] min-w-0 flex flex-col gap-[18px]" data-project-copy>
+        <Counter value="05" class="text-[64px] sm:text-[72px]" />
+        <h3 class="m-0 display text-[36px] sm:text-[44px] tracking-[-0.035em] leading-none"><span class="sr-only">Project 05: </span>A.R. Monex Pro Cycling Team</h3>
         <p class="m-0 text-[17px] leading-[1.55] text-ink-2">The only Mexican pro cycling team racing in Europe. I built the membership checkout behind their existing site: Stripe payments routed to the right legal entity and e-invoices issued automatically.</p>
         <p class="m-0 label text-ink-3 leading-[1.8]">Freelance / Checkout, payments &amp; invoicing<br />Site design by the team's previous studio</p>
         <a href="https://arprocycling.com" class="link text-[16px] self-start">arprocycling.com</a>
@@ -119,7 +136,7 @@ const departments = [
       </div>
     </article>
 
-    <article id="project-05" class="flex flex-wrap items-center gap-10 sm:gap-14 scroll-mt-24" data-project>
+    <article id="project-06" class="flex flex-wrap-reverse items-center gap-10 sm:gap-14 scroll-mt-24" data-project>
       <div class="panel flex-[1_1_600px] min-w-0 rounded-[36px] p-5 sm:p-11 flex min-h-[380px] sm:min-h-[480px] relative overflow-hidden" data-panel>
         <Pour color="#FFD23F" />
         <div class="relative z-10 flex-1 flex justify-center items-end" data-panel-content>
@@ -134,19 +151,19 @@ const departments = [
         </div>
       </div>
       <div class="flex-[1_1_320px] min-w-0 flex flex-col gap-[18px]" data-project-copy>
-        <Counter value="05" class="text-[64px] sm:text-[72px]" />
-        <h3 class="m-0 display text-[36px] sm:text-[44px] tracking-[-0.035em] leading-none"><span class="sr-only">Project 05: </span>ABR brand websites</h3>
+        <Counter value="06" class="text-[64px] sm:text-[72px]" />
+        <h3 class="m-0 display text-[36px] sm:text-[44px] tracking-[-0.035em] leading-none"><span class="sr-only">Project 06: </span>ABR brand websites</h3>
         <p class="m-0 text-[17px] leading-[1.55] text-ink-2">Two sites for a maintenance and construction group that looks after brands like Soho House and Tim Hortons across 11 Mexican states.</p>
         <p class="m-0 label text-ink-3 leading-[1.8]">Design / Development / SEO</p>
         <div class="flex flex-wrap gap-5"><a href="https://somosabr.com.mx" class="link text-[16px]">somosabr.com.mx</a><a href="https://obra.somosabr.com.mx" class="link text-[16px]">obra.somosabr.com.mx</a></div>
       </div>
     </article>
 
-    <article id="project-06" class="panel rounded-[36px] text-paper p-7 sm:px-11 sm:py-14 flex flex-wrap gap-10 sm:gap-14 items-center relative overflow-hidden" data-project data-panel>
+    <article id="project-07" class="panel rounded-[36px] text-paper p-7 sm:px-11 sm:py-14 flex flex-wrap gap-10 sm:gap-14 items-center relative overflow-hidden" data-project data-panel>
       <Pour color="#141414" />
       <div class="relative z-10 flex-[1_1_320px] min-w-0 flex flex-col gap-[18px]" data-project-copy>
-        <Counter value="06" class="text-[64px] sm:text-[72px]" />
-        <h3 class="m-0 display text-[36px] sm:text-[44px] tracking-[-0.035em] leading-none"><span class="sr-only">Project 06: </span>Process redesign</h3>
+        <Counter value="07" class="text-[64px] sm:text-[72px]" />
+        <h3 class="m-0 display text-[36px] sm:text-[44px] tracking-[-0.035em] leading-none"><span class="sr-only">Project 07: </span>Process redesign</h3>
         <p class="m-0 text-[17px] leading-[1.55] text-ink-soft">Co-led the diagnosis of how four departments in a group of 200+ people really work, before deciding where technology should help.</p>
       </div>
       <div class="relative z-10 flex-[1_1_520px] min-w-0 flex flex-col gap-3" aria-hidden="true" data-bars data-panel-content>

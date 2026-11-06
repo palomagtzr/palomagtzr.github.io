@@ -1,0 +1,41 @@
+---
+/**
+ * S2G Energy data flow: typographic stages joined by curved lines. A slime
+ * drop travels the line on scroll (MotionPathPlugin) and lights each stage.
+ * Horizontal from `sm`, vertical on phones.
+ */
+const stages = [
+  { label: 'Sensors', sub: 'electricity · water · gas' },
+  { label: 'Python ETL' },
+  { label: 'Azure SQL' },
+  { label: 'FastAPI' },
+  { label: 'Next.js dashboards' },
+];
+const label = 'font-display font-extrabold tracking-[-0.03em]';
+const sub = 'label';
+---
+<!-- desktop: zigzag left → right -->
+<svg class="hidden sm:block w-full h-auto overflow-visible" viewBox="0 0 720 300" aria-labelledby="flow-title" role="img" data-flow>
+  <title id="flow-title">Data flow: sensors (electricity, water, gas) to Python ETL, Azure SQL, FastAPI and Next.js dashboards</title>
+  <path d="M90 104 C150 104 180 198 240 198 C300 198 320 104 380 104 C440 104 440 198 500 198 C560 198 570 118 632 118" fill="none" stroke="#141414" stroke-width="1.5" data-flow-path></path>
+  <g class={label} font-size="24" text-anchor="middle" fill="#141414">
+    <g data-stage><rect x="38" y="46" width="104" height="36" rx="10" fill="#FFD23F" opacity="0" data-stage-mark></rect><text x="90" y="72">{stages[0].label}</text><text x="90" y="92" class={sub} font-size="9.5" fill="#5A5A5A">{stages[0].sub}</text></g>
+    <g data-stage><rect x="170" y="212" width="140" height="36" rx="10" fill="#FFD23F" opacity="0" data-stage-mark></rect><text x="240" y="238">{stages[1].label}</text></g>
+    <g data-stage><rect x="316" y="46" width="128" height="36" rx="10" fill="#FFD23F" opacity="0" data-stage-mark></rect><text x="380" y="72">{stages[2].label}</text></g>
+    <g data-stage><rect x="448" y="212" width="104" height="36" rx="10" fill="#FFD23F" opacity="0" data-stage-mark></rect><text x="500" y="238">{stages[3].label}</text></g>
+    <g data-stage><rect x="578" y="36" width="110" height="68" rx="10" fill="#FFD23F" opacity="0" data-stage-mark></rect><text x="632" y="62">Next.js</text><text x="632" y="90">dashboards</text></g>
+  </g>
+  <use href="#slime-drop" x="-13" y="-16" width="26" height="32" data-flow-drop></use>
+</svg>
+<!-- phones: top → bottom -->
+<svg class="sm:hidden w-full h-auto overflow-visible" viewBox="0 0 320 540" aria-hidden="true" data-flow>
+  <path d="M96 66 C96 120 224 110 224 164 C224 218 96 208 96 262 C96 316 224 306 224 360 C224 414 96 404 96 458" fill="none" stroke="#141414" stroke-width="1.5" data-flow-path></path>
+  <g class={label} font-size="22" text-anchor="middle" fill="#141414">
+    <g data-stage><rect x="46" y="18" width="100" height="34" rx="10" fill="#FFD23F" opacity="0" data-stage-mark></rect><text x="96" y="42">{stages[0].label}</text><text x="96" y="60" class={sub} font-size="9" fill="#5A5A5A">{stages[0].sub}</text></g>
+    <g data-stage><rect x="158" y="128" width="132" height="34" rx="10" fill="#FFD23F" opacity="0" data-stage-mark></rect><text x="224" y="152">{stages[1].label}</text></g>
+    <g data-stage><rect x="36" y="226" width="120" height="34" rx="10" fill="#FFD23F" opacity="0" data-stage-mark></rect><text x="96" y="250">{stages[2].label}</text></g>
+    <g data-stage><rect x="176" y="324" width="96" height="34" rx="10" fill="#FFD23F" opacity="0" data-stage-mark></rect><text x="224" y="348">{stages[3].label}</text></g>
+    <g data-stage><rect x="6" y="410" width="180" height="34" rx="10" fill="#FFD23F" opacity="0" data-stage-mark></rect><text x="96" y="434">{stages[4].label}</text></g>
+  </g>
+  <use href="#slime-drop" x="-13" y="-16" width="26" height="32" data-flow-drop></use>
+</svg>

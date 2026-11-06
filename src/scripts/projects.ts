@@ -1,5 +1,6 @@
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { MotionPathPlugin } from 'gsap/MotionPathPlugin';
 import type Lenis from 'lenis';
 import { q, qa } from './env';
 import { hint, unhint, scrubTimeline } from './motion';
@@ -10,7 +11,32 @@ import { hint, unhint, scrubTimeline } from './motion';
  * While leaving at the top the panel shrinks and dims (one scrubbed timeline per
  * article, which also drives the inner parallax). A sticky index follows along.
  */
+/** A slime drop runs the flow diagram's line on scroll and lights each stage it reaches. */
+function initFlow(article: HTMLElement) {
+  const svg = qa<SVGSVGElement>('[data-flow]', article).find((el) => el.getClientRects().length > 0);
+  if (!svg) return;
+  const path = q<SVGPathElement>('[data-flow-path]', svg);
+  const drop = q('[data-flow-drop]', svg);
+  const marks = qa('[data-stage-mark]', svg);
+  if (!path || !drop) return;
+  const thresholds = marks.map((_, i) => (marks.length === 1 ? 0 : i / (marks.length - 1)) - 0.02);
+  const lit = marks.map(() => false);
+  gsap.timeline({
+    scrollTrigger: {
+      trigger: article,
+      start: 'top 75%',
+      end: 'bottom 45%',
+      scrub: 0.5,
+      onUpdate: (self) => marks.forEach((m, i) => {
+        const on = self.progress >= thresholds[i];
+        if (on !== lit[i]) { lit[i] = on; gsap.to(m, { opacity: on ? 1 : 0, duration: 0.35, ease: 'power2.out', overwrite: true }); }
+      }),
+    },
+  }).to(drop, { motionPath: { path, align: path, alignOrigin: [0.5, 0.5] }, ease: 'none' });
+}
+
 export function initProjects(lenis: Lenis | null) {
+  gsap.registerPlugin(MotionPathPlugin);
   const links = qa<HTMLAnchorElement>('[data-index-link]');
   const marker = q('[data-index-marker]');
   const indexBox = q('[data-index]');
@@ -53,6 +79,8 @@ export function initProjects(lenis: Lenis | null) {
     // Leaving at the top: only once the panel's bottom has crossed the upper 60 % of the viewport.
     scrubTimeline(panel, panel, 'bottom 60%', 'bottom 0%', 0.4)
       .to(panel, { scale: 0.96, opacity: 0.6, transformOrigin: '50% 100%', ease: 'none' });
+
+    initFlow(article);
 
     // Sticky index: the slime drop slides to the project on screen.
     if (links.length && marker && indexBox) {
