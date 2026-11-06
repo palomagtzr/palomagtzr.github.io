@@ -17,7 +17,7 @@ import ticketsWeb from '../assets/tickets_web.jpg';
 import ticketsMobile from '../assets/tickets_mobile.jpg';
 import finance from '../assets/finance.jpg';
 import ops from '../assets/ops.jpg';
-import monex from '../assets/monex_checkout.jpg';
+import monexLogo from '../assets/armonex-logo.png';
 import abrHome from '../assets/abr_home.jpg';
 import obraHome from '../assets/obra_home.jpg';
 
@@ -111,10 +111,10 @@ const departments = [
         <p class="m-0 label text-ink-3 leading-[1.8]">Freelance / Checkout, payments &amp; invoicing<br />Site design by the team's previous studio</p>
         <a href="https://arprocycling.com" class="link text-[16px] self-start">arprocycling.com</a>
       </div>
-      <div class="panel flex-[1_1_600px] min-w-0 rounded-[36px] p-5 sm:p-11 flex min-h-[380px] sm:min-h-[480px] relative overflow-hidden" data-panel>
-        <Pour color="#141414" />
-        <div class="relative z-10 flex-1 flex justify-center items-end" data-panel-content>
-          <div class="w-full max-w-[600px]"><Browser src={monex} alt="Membership checkout on arprocycling.com" /></div>
+      <div class="panel flex-[1_1_600px] min-w-0 rounded-[36px] border-[1.5px] border-ink p-5 sm:p-11 flex min-h-[380px] sm:min-h-[480px] relative overflow-hidden" data-panel>
+        <Pour color="#FFFFFF" />
+        <div class="relative z-10 flex-1 flex justify-center items-center" data-panel-content>
+          <Image src={monexLogo} alt="A.R. Monex Pro Cycling Team logo" widths={[400, 800, 1207]} sizes="(min-width: 1024px) 330px, 55vw" quality={90} class="w-[55%] h-auto" loading="lazy" decoding="async" />
         </div>
       </div>
     </article>
