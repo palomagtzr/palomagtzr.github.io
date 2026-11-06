@@ -35,5 +35,11 @@ if (env.reduced) {
   initToolkit();
   initFooter();
   initCursor();
-  window.addEventListener('load', () => ScrollTrigger.refresh());
+  // Positions are only trustworthy once fonts, section images and the intro are done.
+  const refresh = () => ScrollTrigger.refresh();
+  window.addEventListener('load', refresh);
+  document.fonts.ready.then(refresh);
+  intro.then(refresh);
+  const pending = Array.from(document.images).filter((img) => !img.complete);
+  Promise.allSettled(pending.map((img) => new Promise<void>((r) => { img.addEventListener('load', () => r(), { once: true }); img.addEventListener('error', () => r(), { once: true }); }))).then(refresh);
 }

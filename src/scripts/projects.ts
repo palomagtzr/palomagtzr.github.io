@@ -29,27 +29,32 @@ export function initProjects(lenis: Lenis | null) {
     gsap.set(cols, { y: 0, yPercent: 0 }); // columns rest on their final digit without JS; roll from 0 with it
     gsap.set(content, { autoAlpha: 0 });
     gsap.set(lines, { y: 22, autoAlpha: 0 });
+    // Enter early and fast: the panel must be complete well before it reaches the centre.
     const enter = gsap.timeline({
-      scrollTrigger: { trigger: article, start: 'top 78%', once: true },
+      scrollTrigger: { trigger: article, start: 'top 100%', once: true },
       onStart: () => hint([pour, content, lines, cols]),
       onComplete: () => unhint([pour, content, lines, cols]),
     });
-    if (pour) enter.to(pour, { yPercent: 0, y: 0, duration: 1, ease: 'power2.inOut' }, 0);
-    enter.to(content, { autoAlpha: 1, duration: 0.5, ease: 'power2.out' }, 0.75)
-      .to(lines, { y: 0, autoAlpha: 1, duration: 0.7, ease: 'power3.out', stagger: 0.08 }, 0.35);
-    cols.forEach((col, c) => enter.to(col, { yPercent: -Number(col.dataset.digitCol) * 10, duration: 1.3, ease: 'power4.inOut' }, 0.3 + c * 0.12));
-    if (bars.length) enter.from(bars, { scaleX: 0, transformOrigin: '0% 50%', duration: 0.8, ease: 'power3.out', stagger: 0.05 }, 0.9);
+    if (pour) enter.to(pour, { yPercent: 0, y: 0, duration: 0.5, ease: 'power2.inOut' }, 0);
+    enter.to(content, { autoAlpha: 1, duration: 0.35, ease: 'power2.out' }, 0.2)
+      .to(lines, { y: 0, autoAlpha: 1, duration: 0.6, ease: 'power3.out', stagger: 0.08 }, 0.15);
+    cols.forEach((col, c) => enter.to(col, { yPercent: -Number(col.dataset.digitCol) * 10, duration: 1.1, ease: 'power4.inOut' }, 0.1 + c * 0.1));
+    if (bars.length) enter.from(bars, { scaleX: 0, transformOrigin: '0% 50%', duration: 0.8, ease: 'power3.out', stagger: 0.05 }, 0.5);
 
     const images = env.mobile ? [] : qa('[data-parallax]', article);
     const front = q('[data-window="front"]', article);
     const back = q('[data-window="back"]', article);
-    const scrubbed = [panel, ...images, front, back].filter(Boolean) as Element[];
-    const tl = scrubTimeline(scrubbed, article, 'top bottom', 'bottom top', 0.6);
-    if (images.length) tl.fromTo(images, { yPercent: -4 }, { yPercent: 4, ease: 'none', duration: 1 }, 0);
-    if (front && back) {
-      tl.fromTo(front, { y: 22 }, { y: -16, ease: 'none', duration: 1 }, 0).fromTo(back, { y: -10 }, { y: 10, ease: 'none', duration: 1 }, 0);
+    const scrubbed = [...images, front, back].filter(Boolean) as Element[];
+    if (scrubbed.length) {
+      const tl = scrubTimeline(scrubbed, article, 'top bottom', 'bottom top', 0.6);
+      if (images.length) tl.fromTo(images, { yPercent: -3, scale: 1.07 }, { yPercent: 3, scale: 1.07, ease: 'none', duration: 1 }, 0);
+      if (front && back) {
+        tl.fromTo(front, { y: 22 }, { y: -16, ease: 'none', duration: 1 }, 0).fromTo(back, { y: -10 }, { y: 10, ease: 'none', duration: 1 }, 0);
+      }
     }
-    tl.to(panel, { scale: 0.96, opacity: 0.6, transformOrigin: '50% 100%', ease: 'none', duration: 0.38 }, 0.62);
+    // Leaving at the top: only once the panel's bottom has crossed the upper 60 % of the viewport.
+    scrubTimeline(panel, panel, 'bottom 60%', 'bottom 0%', 0.4)
+      .to(panel, { scale: 0.96, opacity: 0.6, transformOrigin: '50% 100%', ease: 'none' });
 
     // Sticky index: the slime drop slides to the project on screen.
     if (links.length && marker && indexBox) {
