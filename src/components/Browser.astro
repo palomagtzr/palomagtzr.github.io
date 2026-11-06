@@ -1,0 +1,25 @@
+---
+/** Browser-window frame around a screenshot. */
+import { Image } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
+interface Props {
+  src: ImageMetadata;
+  alt: string;
+  height?: number;
+  widths?: number[];
+  sizes?: string;
+  class?: string;
+  shadow?: boolean;
+}
+const { src, alt, height = 360, widths = [480, 800, 1200], sizes = '(min-width: 1024px) 600px, 100vw', class: cls = '', shadow = false } = Astro.props;
+---
+<div class:list={['browser w-full flex flex-col rounded-xl overflow-hidden border-[1.5px] border-ink bg-white', shadow && 'shadow-[0_24px_50px_rgba(20,20,20,0.25)]', cls]}>
+  <div class="h-[30px] shrink-0 bg-ink flex items-center gap-[7px] px-3" aria-hidden="true">
+    <span class="w-[9px] h-[9px] rounded-full bg-paper"></span>
+    <span class="w-[9px] h-[9px] rounded-full bg-paper"></span>
+    <span class="w-[9px] h-[9px] rounded-full bg-slime"></span>
+  </div>
+  <div class="frame relative overflow-hidden w-full" style={`height:${height}px`} data-frame>
+    <Image src={src} alt={alt} widths={widths} sizes={sizes} class="w-full h-full object-cover object-left-top" data-parallax loading="lazy" decoding="async" />
+  </div>
+</div>

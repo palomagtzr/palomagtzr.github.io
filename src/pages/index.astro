@@ -1,9 +1,20 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import Header from '../components/Header.astro';
+import Hero from '../components/Hero.astro';
+import Work from '../components/Work.astro';
+import How from '../components/How.astro';
+import Toolkit from '../components/Toolkit.astro';
+import Footer from '../components/Footer.astro';
 ---
 <Layout>
   <div id="top"></div>
   <Header />
-  <main id="main"></main>
+  <main id="main">
+    <Hero />
+    <Work />
+    <How />
+    <Toolkit />
+  </main>
+  <Footer />
 </Layout>

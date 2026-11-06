@@ -1,13 +1,13 @@
 ---
 import DropLogo from './DropLogo.astro';
 ---
-<header id="site-header" class="sticky top-0 z-40 bg-paper">
+<header id="site-header" class="relative sm:sticky top-0 z-40 bg-paper">
   <div class="container-x flex flex-wrap justify-between gap-x-5 gap-y-3 py-4 sm:py-[22px] label leading-[1.5]">
     <a href="#top" class="flex items-start gap-2.5 no-underline hover:text-ink" aria-label="Back to top">
       <DropLogo class="w-[34px] h-[34px] -mt-1 shrink-0 js-wobble" />
       <span class="font-semibold">Paloma Gutiérrez Ricaud<br /><span class="font-normal text-ink-3">Systems engineer &amp; product designer</span></span>
     </a>
-    <span class="text-ink-3 text-right sm:text-left order-1 sm:order-none">Mexico City<br />Moving to Barcelona</span>
+    <span class="text-ink-3 order-1 sm:order-none">Mexico City<br />Moving to Barcelona</span>
     <nav aria-label="Primary" class="flex gap-[22px] items-start basis-full sm:basis-auto order-2 sm:order-none">
       <a href="#work" class="nav-link" data-section="work">Work</a>
       <a href="#how" class="nav-link" data-section="how">Approach</a>

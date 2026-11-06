@@ -1,0 +1,130 @@
+---
+import { Image } from 'astro:assets';
+import Browser from './Browser.astro';
+import ticketsWeb from '../assets/tickets_web.jpg';
+import ticketsMobile from '../assets/tickets_mobile.jpg';
+import finance from '../assets/finance.jpg';
+import ops from '../assets/ops.jpg';
+import monex from '../assets/monex_checkout.jpg';
+import abrHome from '../assets/abr_home.jpg';
+import obraHome from '../assets/obra_home.jpg';
+
+const departments = [
+  { name: 'Operations', bars: [[2, true], [1, false], [3, false]] },
+  { name: 'Purchasing', bars: [[1, false], [2, true], [2, false]] },
+  { name: 'People', bars: [[3, false], [1, true], [1, false]] },
+  { name: 'Accounting', bars: [[1, false], [1, false], [3, true]] },
+] as const;
+---
+<section id="work" class="border-t-[1.5px] border-ink scroll-mt-20" aria-labelledby="work-title" data-section="work">
+  <div class="container-x pt-7 flex justify-between gap-4 label">
+    <h2 id="work-title" class="m-0 font-semibold label">Selected work</h2>
+    <span class="text-ink-3">2024 — 2026</span>
+  </div>
+  <div class="container-x pt-14 sm:pt-[72px] pb-10 flex flex-col gap-20 sm:gap-[120px]">
+
+    <article class="flex flex-wrap items-center gap-10 sm:gap-14" data-project>
+      <div class="panel flex-[1_1_600px] min-w-0 rounded-[36px] bg-slime p-5 sm:p-11 flex justify-center items-end gap-[22px] min-h-[380px] sm:min-h-[480px] relative" data-panel>
+        <div class="flex-auto max-w-[470px] bg-ink rounded-[14px] p-2 shadow-[0_24px_50px_rgba(20,20,20,0.22)] mr-[88px] sm:mr-0">
+          <div class="frame relative overflow-hidden rounded-[7px] h-[220px] sm:h-[300px]" data-frame>
+            <Image src={ticketsWeb} alt="ABR Tickets board on web" widths={[480, 800, 1000]} sizes="(min-width: 1024px) 470px, 90vw" class="w-full h-full object-cover object-left-top" loading="lazy" decoding="async" data-parallax />
+          </div>
+        </div>
+        <div class="absolute right-5 bottom-5 w-[110px] sm:static sm:w-auto sm:flex-[0_0_150px] bg-ink rounded-[26px] p-[7px] shadow-[0_24px_50px_rgba(20,20,20,0.22)]">
+          <div class="frame relative overflow-hidden rounded-[20px] h-[228px] sm:h-[310px]" data-frame>
+            <Image src={ticketsMobile} alt="ABR Tickets ticket detail on Android" widths={[300, 600]} sizes="150px" class="w-full h-full object-cover object-top" loading="lazy" decoding="async" data-parallax />
+          </div>
+        </div>
+      </div>
+      <div class="flex-[1_1_320px] min-w-0 flex flex-col gap-[18px]">
+        <span class="display text-[64px] sm:text-[72px] leading-[0.8] tracking-[-0.05em]" aria-hidden="true" data-number>01</span>
+        <h3 class="m-0 display text-[36px] sm:text-[44px] tracking-[-0.035em] leading-none"><span class="sr-only">Project 01: </span>ABR Tickets</h3>
+        <p class="m-0 text-[17px] leading-[1.55] text-ink-2">Maintenance ticketing for field technicians, admins and clients, built to replace a paid tool that didn't fit how the team works.</p>
+        <p class="m-0 label text-ink-3 leading-[1.8]">Product owner / UX &amp; UI / Sole developer<br />Web + Android · Internal tool · Shown with sample data</p>
+      </div>
+    </article>
+
+    <article class="flex flex-wrap-reverse items-center gap-10 sm:gap-14" data-project>
+      <div class="flex-[1_1_320px] min-w-0 flex flex-col gap-[18px]">
+        <span class="display text-[64px] sm:text-[72px] leading-[0.8] tracking-[-0.05em]" aria-hidden="true" data-number>02</span>
+        <h3 class="m-0 display text-[36px] sm:text-[44px] tracking-[-0.035em] leading-none"><span class="sr-only">Project 02: </span>Construction finance platform</h3>
+        <p class="m-0 text-[17px] leading-[1.55] text-ink-2">Scattered spreadsheets became one place where finance and partners see the same numbers.</p>
+        <p class="m-0 label text-ink-3 leading-[1.8]">Product owner / Data model / Developer<br />Web · Internal tool · Shown with sample data</p>
+      </div>
+      <div class="panel flex-[1_1_600px] min-w-0 rounded-[36px] bg-ink p-5 sm:p-11 flex justify-center items-end min-h-[380px] sm:min-h-[480px]" data-panel>
+        <div class="w-full max-w-[600px]">
+          <Browser src={finance} alt="Project finance dashboard" height={360} />
+        </div>
+      </div>
+    </article>
+
+    <article class="flex flex-wrap items-center gap-10 sm:gap-14" data-project>
+      <div class="panel flex-[1_1_600px] min-w-0 rounded-[36px] bg-white border-[1.5px] border-ink p-5 sm:p-11 flex justify-center items-end min-h-[380px] sm:min-h-[480px]" data-panel>
+        <div class="w-full max-w-[600px]">
+          <Browser src={ops} alt="Visit schedule dashboard" height={360} />
+        </div>
+      </div>
+      <div class="flex-[1_1_320px] min-w-0 flex flex-col gap-[18px]">
+        <span class="display text-[64px] sm:text-[72px] leading-[0.8] tracking-[-0.05em]" aria-hidden="true" data-number>03</span>
+        <h3 class="m-0 display text-[36px] sm:text-[44px] tracking-[-0.035em] leading-none"><span class="sr-only">Project 03: </span>ABR Operaciones</h3>
+        <p class="m-0 text-[17px] leading-[1.55] text-ink-2">Monthly visit schedules, preventive maintenance and photo evidence for every branch of a facilities contract, so coordinators validate work instead of chasing it.</p>
+        <p class="m-0 label text-ink-3 leading-[1.8]">Product owner / UX &amp; UI / Sole developer<br />Web · Internal tool · Launching Dec 2026 · Shown with sample data</p>
+      </div>
+    </article>
+
+    <article class="flex flex-wrap-reverse items-center gap-10 sm:gap-14" data-project>
+      <div class="flex-[1_1_320px] min-w-0 flex flex-col gap-[18px]">
+        <span class="display text-[64px] sm:text-[72px] leading-[0.8] tracking-[-0.05em]" aria-hidden="true" data-number>04</span>
+        <h3 class="m-0 display text-[36px] sm:text-[44px] tracking-[-0.035em] leading-none"><span class="sr-only">Project 04: </span>A.R. Monex Pro Cycling Team</h3>
+        <p class="m-0 text-[17px] leading-[1.55] text-ink-2">The only Mexican pro cycling team racing in Europe. I built the membership checkout behind their existing site: Stripe payments routed to the right legal entity and e-invoices issued automatically.</p>
+        <p class="m-0 label text-ink-3 leading-[1.8]">Freelance / Checkout, payments &amp; invoicing<br />Site design by the team's previous studio</p>
+        <a href="https://arprocycling.com" class="link text-[16px] self-start">arprocycling.com</a>
+      </div>
+      <div class="panel flex-[1_1_600px] min-w-0 rounded-[36px] bg-ink p-5 sm:p-11 flex justify-center items-end min-h-[380px] sm:min-h-[480px]" data-panel>
+        <div class="w-full max-w-[600px]">
+          <Browser src={monex} alt="Membership checkout on arprocycling.com" height={360} />
+        </div>
+      </div>
+    </article>
+
+    <article class="flex flex-wrap items-center gap-10 sm:gap-14" data-project>
+      <div class="panel flex-[1_1_600px] min-w-0 rounded-[36px] bg-slime p-5 sm:p-11 flex justify-center items-end min-h-[380px] sm:min-h-[480px]" data-panel>
+        <div class="relative w-full max-w-[600px] h-[300px] sm:h-[400px]">
+          <div class="absolute left-0 top-0 w-[78%]" data-window="back">
+            <Browser src={abrHome} alt="somosabr.com.mx homepage" height={250} sizes="(min-width: 1024px) 470px, 70vw" />
+          </div>
+          <div class="absolute right-0 bottom-0 w-[66%]" data-window="front">
+            <Browser src={obraHome} alt="obra.somosabr.com.mx homepage" height={210} sizes="(min-width: 1024px) 400px, 60vw" shadow />
+          </div>
+        </div>
+      </div>
+      <div class="flex-[1_1_320px] min-w-0 flex flex-col gap-[18px]">
+        <span class="display text-[64px] sm:text-[72px] leading-[0.8] tracking-[-0.05em]" aria-hidden="true" data-number>05</span>
+        <h3 class="m-0 display text-[36px] sm:text-[44px] tracking-[-0.035em] leading-none"><span class="sr-only">Project 05: </span>ABR brand websites</h3>
+        <p class="m-0 text-[17px] leading-[1.55] text-ink-2">Two sites for a maintenance and construction group that looks after brands like Soho House and Tim Hortons across 11 Mexican states.</p>
+        <p class="m-0 label text-ink-3 leading-[1.8]">Design / Development / SEO</p>
+        <div class="flex flex-wrap gap-5"><a href="https://somosabr.com.mx" class="link text-[16px]">somosabr.com.mx</a><a href="https://obra.somosabr.com.mx" class="link text-[16px]">obra.somosabr.com.mx</a></div>
+      </div>
+    </article>
+
+    <article class="panel rounded-[36px] bg-ink text-paper p-7 sm:px-11 sm:py-14 flex flex-wrap gap-10 sm:gap-14 items-center" data-project data-panel>
+      <div class="flex-[1_1_320px] min-w-0 flex flex-col gap-[18px]">
+        <span class="display text-[64px] sm:text-[72px] leading-[0.8] tracking-[-0.05em]" aria-hidden="true" data-number>06</span>
+        <h3 class="m-0 display text-[36px] sm:text-[44px] tracking-[-0.035em] leading-none"><span class="sr-only">Project 06: </span>Process redesign</h3>
+        <p class="m-0 text-[17px] leading-[1.55] text-ink-soft">Co-led the diagnosis of how four departments in a group of 200+ people really work, before deciding where technology should help.</p>
+      </div>
+      <div class="flex-[1_1_520px] min-w-0 flex flex-col gap-3" aria-hidden="true" data-bars>
+        {departments.map((d) => (
+          <div class="flex items-center gap-3.5">
+            <span class="flex-[0_0_84px] sm:flex-[0_0_108px] label text-ink-soft">{d.name}</span>
+            <div class="flex-1 h-[42px] rounded-[10px] bg-[#2A2A2A] flex gap-2 p-1.5">
+              {d.bars.map(([flex, lit]) => (
+                <span class:list={['rounded-md', lit ? 'bg-paper' : 'bg-[#4A4A4A]']} style={`flex:${flex}`} data-bar></span>
+              ))}
+            </div>
+          </div>
+        ))}
+      </div>
+    </article>
+  </div>
+</section>

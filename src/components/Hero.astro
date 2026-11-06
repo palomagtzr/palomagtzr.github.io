@@ -1,0 +1,36 @@
+---
+import { Image } from 'astro:assets';
+import DropLogo from './DropLogo.astro';
+import photo from '../assets/photo.jpg';
+---
+<section class="container-x pt-10 pb-20 sm:pt-14 sm:pb-24 flex flex-wrap items-end gap-10 sm:gap-14" aria-labelledby="hero-title" data-hero>
+  <div class="flex-[1_1_560px] min-w-0 flex flex-col gap-8 sm:gap-9">
+    <h1 id="hero-title" class="m-0 display text-[clamp(3.2rem,8vw,7.4rem)] leading-[0.88] tracking-[-0.05em]" data-hero-title>
+      I speak both <span class="hl inline-block relative px-[0.1em] rounded-[0.16em] -rotate-2" data-hl><span class="hl-smear absolute inset-0 rounded-[0.16em] bg-slime" aria-hidden="true" data-hl-smear></span><span class="hl-drip absolute left-[22%] bottom-[-0.1em] w-[0.11em] h-[0.16em] rounded-[50%_50%_60%_60%] bg-slime" aria-hidden="true" data-hl-drip></span><span class="relative">tech</span></span> and people.
+    </h1>
+    <div class="flex flex-wrap gap-6 sm:gap-10 items-start" data-hero-copy>
+      <p class="m-0 flex-[1_1_280px] max-w-[420px] text-[18px] leading-[1.55] text-ink-2">I turn how people really work into products they enjoy using, from the first conversation to launch.</p>
+      <div class="flex flex-col gap-1.5 text-[16px] font-semibold">
+        <a href="mailto:palomagutric@gmail.com" class="link">palomagutric@gmail.com</a>
+        <a href="https://www.linkedin.com/in/palomagtzr" class="link" rel="me">linkedin.com/in/palomagtzr</a>
+      </div>
+    </div>
+  </div>
+  <div class="flex-[1_1_400px] min-w-0 relative h-[clamp(420px,110vw,540px)] sm:h-[540px]" data-hero-art>
+    <div class="absolute inset-[64px_0_0_48px] rounded-[44px_44px_44px_6px] bg-slime" aria-hidden="true" data-hero-blob></div>
+    <div class="absolute top-0 left-0 w-[76%] h-[89%] sm:h-[480px]" data-tilt>
+      <Image
+        src={photo}
+        alt="Paloma Gutiérrez Ricaud"
+        widths={[430]}
+        sizes="(min-width: 1024px) 430px, 76vw"
+        class="w-full h-full object-cover object-[50%_20%] rounded-[28px] border-[1.5px] border-ink"
+        loading="eager"
+        fetchpriority="high"
+        decoding="async"
+        data-hero-photo
+      />
+    </div>
+    <DropLogo class="absolute right-[18px] bottom-[26px] w-[72px] h-[72px] sm:w-[104px] sm:h-[104px] rotate-[10deg] js-wobble" />
+  </div>
+</section>
