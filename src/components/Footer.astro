@@ -1,12 +1,12 @@
 ---
 /**
- * Footer wordmark: "@PALOMAGTZR" built as clean vector at build time
- * (scripts/build-wordmark.mjs) and inlined so its layers can move
- * (#wm-ink letters, #wm-slime slime with hanging drips, #wm-gloss shine).
+ * Footer wordmark: the illustrated "@palomagtzr" SVG inlined so its layers can
+ * move (#wm-ink letters, #wm-slime slime with hanging drips, #wm-gloss shine).
  * Drops that fall from the drips are added by footer.ts in the same viewBox.
  */
-import paths from '../assets/palomagtzr_wordmark.inline.svg?raw';
-import wordmark from '../data/wordmark.json';
+import traced from '../assets/palomagtzr_wordmark.svg?raw';
+// Inline only the layers: drop the C2PA metadata and the root <svg> element.
+const paths = traced.replace(/<metadata>[\s\S]*?<\/metadata>/, '').replace(/^[\s\S]*?<svg[^>]*>/, '').replace(/<\/svg>\s*$/, '');
 ---
 <footer id="contact" class="bg-paper overflow-hidden scroll-mt-20" aria-labelledby="contact-title" data-section="contact">
   <div class="container-x pt-10 flex flex-wrap justify-between gap-6 label leading-[1.6]">
@@ -15,7 +15,7 @@ import wordmark from '../data/wordmark.json';
   </div>
   <div class="px-4 sm:px-6 pt-8 flex justify-center">
     <a href="https://www.linkedin.com/in/palomagtzr" class="block w-full max-w-[1560px] pb-[6%] no-underline rounded-lg" aria-label="@palomagtzr on LinkedIn" rel="me" data-wordmark>
-      <svg class="block w-full h-auto overflow-visible" viewBox={wordmark.viewBox} aria-hidden="true" focusable="false" data-wm-svg>
+      <svg class="block w-full h-auto overflow-visible" viewBox="0 0 2172 724" aria-hidden="true" focusable="false" data-wm-svg>
         <Fragment set:html={paths} />
         <g data-wm-drops></g>
       </svg>

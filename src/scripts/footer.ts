@@ -3,12 +3,10 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { env, q } from './env';
 import { hint, unhint } from './motion';
 
-import wordmark from '../data/wordmark.json';
-
 const NS = 'http://www.w3.org/2000/svg';
-/** Tips of the six hanging drips and the floor, in the wordmark's viewBox (from the build script). */
-const TIPS = wordmark.tips as [number, number][];
-const FLOOR = wordmark.floor;
+/** Tips of the six hanging drips, in the wordmark's viewBox (2172×724). */
+const TIPS: [number, number][] = [[257, 547], [410, 534], [709, 531], [1091, 540], [1369, 522], [1884, 538]];
+const FLOOR = 724 + 120;
 
 function el<K extends keyof SVGElementTagNameMap>(tag: K, attrs: Record<string, string | number> = {}) {
   const n = document.createElementNS(NS, tag);
@@ -73,13 +71,14 @@ export function initFooter() {
     if (!inView || !settled) return;
     const [tx, ty] = TIPS[Math.floor(Math.random() * TIPS.length)];
     const { drop, bits } = pool[next++ % pool.length];
-    gsap.timeline({ onComplete: schedule })
-      .set(drop, { x: tx, y: ty - 6, scale: 0.4, autoAlpha: 1 }, 0)
+    const hide = () => { gsap.set(drop, { autoAlpha: 0 }); gsap.set(bits, { autoAlpha: 0 }); };
+    gsap.timeline({ onComplete: () => { hide(); schedule(); } })
+      .set(drop, { x: tx, y: ty - 6, scale: 0.4, scaleX: 0.4, scaleY: 0.4, autoAlpha: 1 }, 0)
       .to(drop, { scale: 1, duration: 0.3, ease: 'power1.out' }, 0)
       .to(drop, { y: FLOOR, scaleY: 1.4, scaleX: 0.9, duration: 0.6, ease: 'power2.in' }, 0.3)
       .to(drop, { scaleY: 0.3, scaleX: 1.8, autoAlpha: 0, duration: 0.2, ease: 'power2.out' }, 0.9)
       .fromTo(bits, { x: tx, y: FLOOR, autoAlpha: 1, scale: 0.5 }, { x: (i) => tx + (i - 1) * gsap.utils.random(34, 60), y: FLOOR - gsap.utils.random(28, 50), scale: 1, duration: 0.2, ease: 'power2.out', stagger: 0.015 }, 0.88)
-      .to(bits, { y: FLOOR + 8, autoAlpha: 0, duration: 0.25, ease: 'power2.in' }, 1.08);
+      .to(bits, { y: FLOOR + 8, autoAlpha: 0, duration: 0.25, ease: 'power2.in' }, '>');
   }
 
   // Hover: the slime trembles once.

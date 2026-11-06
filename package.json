@@ -6,7 +6,6 @@
   "scripts": {
     "dev": "astro dev",
     "wordmark": "node scripts/build-wordmark.mjs",
-    "prebuild": "node scripts/build-wordmark.mjs",
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro"

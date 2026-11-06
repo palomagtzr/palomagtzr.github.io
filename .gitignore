@@ -6,5 +6,6 @@ npm-debug.log*
 .env
 .env.*
 portfolio-assets/design-reference.html
-src/assets/palomagtzr_wordmark.svg
 wordmark-preview.svg
+src/assets/palomagtzr_wordmark.inline.svg
+src/data/wordmark.json
