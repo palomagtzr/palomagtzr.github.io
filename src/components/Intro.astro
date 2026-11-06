@@ -1,0 +1,26 @@
+---
+/**
+ * First visit of the session: a drop falls, splats into a pool that floods the
+ * screen, "PALOMA" lands letter by letter, then the slime curtain slides down
+ * and reveals the hero. Everything is transform/opacity. ≤ 2.4 s. Skippable.
+ */
+const letters = ['P', 'A', 'L', 'O', 'M', 'A'];
+---
+<div id="intro" class="fixed inset-0 z-[60] bg-paper overflow-hidden" data-intro>
+  <div class="absolute inset-0 flex items-center justify-center" data-intro-stage>
+    <svg class="w-12 h-12 sm:w-14 sm:h-14 overflow-visible" viewBox="-17 -20 34 42" aria-hidden="true" focusable="false" data-intro-drop><use href="#slime-drop"></use></svg>
+  </div>
+  <div class="absolute left-1/2 top-1/2 w-[240px] h-[240px] -ml-[120px] -mt-[120px] rounded-full bg-linear-to-b from-slime to-amber" data-intro-pool></div>
+  <div class="absolute inset-0 bg-linear-to-b from-slime to-amber" data-intro-sheet>
+    <svg class="absolute left-0 right-0 bottom-full w-full h-[90px] block" viewBox="0 0 1440 90" preserveAspectRatio="none" aria-hidden="true" focusable="false">
+      <path d="M0 90 L0 70 C90 70 120 22 210 26 C290 30 300 64 380 62 C460 60 470 10 560 14 C640 18 660 58 740 56 C820 54 840 6 930 10 C1010 14 1020 60 1100 58 C1180 56 1190 20 1280 24 C1360 28 1380 66 1440 66 L1440 90 Z" fill="#FFD23F"></path>
+    </svg>
+    <div class="absolute inset-0 flex items-center justify-center" aria-hidden="true">
+      <span class="display text-[clamp(4.4rem,17vw,13rem)] leading-none tracking-[-0.05em] text-ink flex" data-intro-word>
+        {letters.map((l) => <span class="inline-block" data-intro-letter>{l}</span>)}
+      </span>
+    </div>
+  </div>
+  <p class="sr-only">Paloma</p>
+  <button type="button" class="absolute bottom-5 right-5 sm:bottom-7 sm:right-8 label font-semibold px-3 py-2 rounded-md text-ink/70 hover:text-ink" data-intro-skip>Skip</button>
+</div>
