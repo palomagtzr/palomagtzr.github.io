@@ -1,31 +1,38 @@
 ---
 /**
- * First visit of the session: a drop falls, splats into a pool that floods the
- * screen, "PALOMA" lands letter by letter, then the slime curtain slides down
- * and reveals the hero. Everything is transform/opacity. ≤ 2.4 s. Skippable.
+ * First visit of the session: the logo is built on screen — the black drop
+ * lands, slime pours over it and forms its drips — then one drop lets go,
+ * falls, splats, floods the screen and the slime curtain lifts to reveal the
+ * hero while the logo flies to its place in the header. Transform/opacity only.
  */
 import Drip from './Drip.astro';
-const letters = ['P', 'A', 'L', 'O', 'M', 'A'];
+const drop = 'M256 58C224 111 139 205 139 300C139 374 190 427 256 427C322 427 373 374 373 300C373 205 288 111 256 58Z';
+const slime = 'M164 224C181 196 205 173 225 146C239 128 249 110 256 97C267 119 282 143 302 165C323 188 344 207 356 232C363 246 365 260 358 271C351 283 337 280 332 267C327 254 335 239 326 231C318 224 310 238 306 251C301 268 307 286 296 299C286 311 272 305 269 291C266 278 274 263 265 255C256 247 248 261 245 276C241 296 249 315 237 329C225 343 210 334 210 317C210 301 219 283 210 275C201 267 190 284 185 296C178 311 168 311 160 301C149 286 154 250 164 224Z';
 ---
 <div id="intro" class="fixed inset-0 z-[60] bg-paper overflow-hidden" data-intro>
-  <div class="absolute inset-0 flex items-center justify-center" data-intro-stage>
-    <svg class="w-12 h-12 sm:w-14 sm:h-14 overflow-visible" viewBox="-17 -20 34 42" aria-hidden="true" focusable="false" data-intro-drop><use href="#slime-drop"></use></svg>
-  </div>
-  <div class="absolute left-1/2 top-1/2 w-[240px] h-[240px] -ml-[120px] -mt-[120px] rounded-full bg-linear-to-b from-slime to-amber" data-intro-pool></div>
+  <div class="absolute left-1/2 bottom-0 w-[240px] h-[240px] -ml-[120px] -mb-[120px] rounded-full bg-linear-to-b from-slime to-amber" data-intro-pool></div>
   <div class="absolute inset-0 bg-linear-to-b from-slime to-amber" data-intro-sheet>
-    <!-- Bottom edge: wavy slime plus five drips that stretch as the curtain lifts, then let go. -->
     <svg class="absolute left-0 right-0 top-full w-full h-[26px] sm:h-[36px] block" viewBox="0 0 1440 36" preserveAspectRatio="none" aria-hidden="true" focusable="false">
       <path d="M0 0 L1440 0 L1440 10 C1380 10 1360 30 1290 28 C1220 26 1200 6 1130 8 C1060 10 1040 32 970 30 C900 28 880 4 810 6 C740 8 720 34 650 32 C580 30 560 8 490 10 C420 12 400 30 330 28 C260 26 240 6 170 8 C100 10 60 20 0 14 Z" fill="#E0A100"></path>
     </svg>
     {[[10, 16, 110], [28, 12, 70], [47, 20, 130], [68, 14, 90], [88, 16, 115]].map(([x, w, h]) => (
       <Drip class="absolute top-full" width={w} height={h} style={`left:${x}%`} data-intro-drip />
     ))}
-    <div class="absolute inset-0 flex items-center justify-center" aria-hidden="true">
-      <span class="display text-[clamp(4.4rem,17vw,13rem)] leading-none tracking-[-0.05em] text-ink flex" data-intro-word>
-        {letters.map((l) => <span class="inline-block" data-intro-letter>{l}</span>)}
-      </span>
-    </div>
   </div>
-  <p class="sr-only">Paloma</p>
-  <button type="button" class="absolute bottom-5 right-5 sm:bottom-7 sm:right-8 label font-semibold px-3 py-2 rounded-md text-ink/70 hover:text-ink" data-intro-skip>Skip</button>
+  <!-- The logo, built live. Sits above the sheet so it can fly to the header at the end. -->
+  <svg class="absolute left-1/2 top-1/2 w-[150px] h-[150px] sm:w-[190px] sm:h-[190px] -ml-[75px] -mt-[75px] sm:-ml-[95px] sm:-mt-[95px] overflow-visible" viewBox="0 0 512 512" aria-hidden="true" focusable="false" data-intro-logo>
+    <defs>
+      <clipPath id="intro-pour"><rect x="0" y="0" width="512" height="512" data-intro-pour></rect></clipPath>
+    </defs>
+    <g data-intro-mark>
+      <path d={drop} fill="#000"></path>
+      <g clip-path="url(#intro-pour)">
+        <path d={slime} fill="#FFD23F"></path>
+        <path d="M238 142C222 165 203 187 188 210C181 221 176 233 174 244" fill="none" stroke="#FFF0A6" stroke-width="8" stroke-linecap="round" opacity=".85"></path>
+      </g>
+    </g>
+    <use href="#slime-drop" x="-30" y="-36" width="60" height="72" data-intro-fall></use>
+  </svg>
+  <p class="sr-only">Paloma Gutiérrez Ricaud</p>
+  <button type="button" class="absolute bottom-5 right-5 sm:bottom-7 sm:right-8 label font-semibold px-3 py-2 rounded-md text-ink/70 hover:text-ink z-10" data-intro-skip>Skip</button>
 </div>
