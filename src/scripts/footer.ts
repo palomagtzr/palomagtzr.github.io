@@ -3,10 +3,12 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { env, q } from './env';
 import { hint, unhint } from './motion';
 
+import wordmark from '../data/wordmark.json';
+
 const NS = 'http://www.w3.org/2000/svg';
-/** Tips of the six hanging drips, in the wordmark's viewBox (2172×724). */
-const TIPS = [[257, 547], [410, 534], [709, 531], [1091, 540], [1369, 522], [1884, 538]];
-const FLOOR = 724 + 120;
+/** Tips of the six hanging drips and the floor, in the wordmark's viewBox (from the build script). */
+const TIPS = wordmark.tips as [number, number][];
+const FLOOR = wordmark.floor;
 
 function el<K extends keyof SVGElementTagNameMap>(tag: K, attrs: Record<string, string | number> = {}) {
   const n = document.createElementNS(NS, tag);
