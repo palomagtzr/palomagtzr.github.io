@@ -1,0 +1,28 @@
+---
+const drop = 'M256 58C224 111 139 205 139 300C139 374 190 427 256 427C322 427 373 374 373 300C373 205 288 111 256 58Z';
+// The gloss filter works in the user space of the element it is applied to, so the
+// outer group lives in a 160-unit box (≈ pixels) and the 512-unit artwork is scaled inside.
+const k = 160 / 512;
+---
+<div id="loader" class="fixed inset-0 z-[60] bg-paper items-center justify-center" aria-hidden="true" data-loader>
+  <svg class="w-[132px] h-[132px] sm:w-[160px] sm:h-[160px] overflow-visible" viewBox="0 0 160 160" focusable="false" data-loader-drop>
+    <defs>
+      <clipPath id="loader-clip"><path d={drop} transform={`scale(${k})`}></path></clipPath>
+    </defs>
+    <path d={drop} fill="#000" transform={`scale(${k})`}></path>
+    <g clip-path="url(#loader-clip)">
+      <g style="filter:url(#slime-gloss)">
+        <g transform={`scale(${k})`}>
+          <path
+            d="M120 427 C150 412 170 440 200 427 C230 414 250 440 280 427 C310 414 330 440 360 427 C380 418 392 430 400 427 L400 900 L120 900 Z"
+            fill="url(#slime-grad)"
+            data-loader-level
+          ></path>
+        </g>
+      </g>
+    </g>
+    <g style="filter:url(#slime-gloss)">
+      <path d="M80 131 C82 134 85 137 85 140 A5 5 0 1 1 75 140 C75 137 78 134 80 131Z" fill="url(#slime-grad)" data-loader-drip></path>
+    </g>
+  </svg>
+</div>

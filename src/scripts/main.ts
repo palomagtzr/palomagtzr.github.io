@@ -10,10 +10,14 @@ import { initHow } from './how';
 import { initToolkit } from './toolkit';
 import { initFooter } from './footer';
 import { initReduced } from './reduced';
+import { initLoader } from './loader';
+import { initCursor } from './cursor';
+import { initSlimeBreathing } from './slime';
 
 gsap.registerPlugin(ScrollTrigger, SplitText);
 
 if (env.reduced) {
+  document.querySelector('[data-loader]')?.remove();
   initReduced();
   initHeader(null);
 } else {
@@ -22,7 +26,8 @@ if (env.reduced) {
   gsap.ticker.add((time) => lenis.raf(time * 1000));
   gsap.ticker.lagSmoothing(0);
 
-  const ready = document.fonts.ready.then(() => undefined);
+  const loaded = initLoader(lenis);
+  const ready = Promise.all([document.fonts.ready, loaded]).then(() => undefined);
 
   initHeader(lenis);
   initHero(ready);
@@ -30,5 +35,7 @@ if (env.reduced) {
   initHow();
   initToolkit();
   initFooter();
+  initCursor();
+  initSlimeBreathing();
   window.addEventListener('load', () => ScrollTrigger.refresh());
 }

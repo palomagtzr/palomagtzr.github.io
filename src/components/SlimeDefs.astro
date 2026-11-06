@@ -1,0 +1,52 @@
+---
+/**
+ * Shared SVG defs: the "slime-gloss" filter (goo → bump → gloss → dark rim)
+ * and the slime gradient. The fill gradient lives on the source shapes so the
+ * filter never has to synthesize colour (keeps it working in every engine).
+ */
+interface Props { }
+const filters = [
+  { id: 'slime-gloss', blur: 4, bump: 5, light: { x: 40, y: -30, z: 140 }, live: false },
+  { id: 'slime-gloss-live', blur: 3, bump: 4, light: { x: 900, y: -200, z: 320 }, live: true },
+  { id: 'slime-cursor', blur: 3, bump: 2, light: { x: -12, y: -26, z: 60 }, live: false },
+];
+---
+<svg class="absolute w-0 h-0 overflow-hidden" aria-hidden="true" focusable="false">
+  <defs>
+    <linearGradient id="slime-grad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0.15" stop-color="#FFD23F"></stop>
+      <stop offset="1" stop-color="#E0A100"></stop>
+    </linearGradient>
+    {filters.map((f) => (
+      <filter id={f.id} x="-25%" y="-25%" width="150%" height="175%" color-interpolation-filters="sRGB">
+        <feGaussianBlur in="SourceGraphic" stdDeviation={f.blur} result="blur"></feGaussianBlur>
+        <feColorMatrix in="blur" type="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 22 -9" result="goo"></feColorMatrix>
+        <feTurbulence type="fractalNoise" baseFrequency="0.012 0.03" numOctaves="2" seed="7" result="noise" data-breathe></feTurbulence>
+        <feDisplacementMap in="goo" in2="noise" scale={f.bump} xChannelSelector="R" yChannelSelector="G" result="shape"></feDisplacementMap>
+        <feOffset in="shape" dy="-4" result="up"></feOffset>
+        <feComposite in="shape" in2="up" operator="out" result="edge"></feComposite>
+        <feFlood flood-color="#B87F00" flood-opacity="0.5" result="rimColor"></feFlood>
+        <feComposite in="rimColor" in2="edge" operator="in" result="rim"></feComposite>
+        <feGaussianBlur in="shape" stdDeviation="3" result="depth"></feGaussianBlur>
+        <feSpecularLighting in="depth" surfaceScale="7" specularConstant="0.9" specularExponent="30" lighting-color="#ffffff" result="spec">
+          <fePointLight x={f.light.x} y={f.light.y} z={f.light.z} data-light={f.live ? 'live' : undefined}></fePointLight>
+        </feSpecularLighting>
+        <feComposite in="spec" in2="shape" operator="in" result="gloss"></feComposite>
+        <feMerge>
+          <feMergeNode in="shape"></feMergeNode>
+          <feMergeNode in="rim"></feMergeNode>
+          <feMergeNode in="gloss"></feMergeNode>
+        </feMerge>
+      </filter>
+    ))}
+    <filter id="wordmark-shine" x="-5%" y="-10%" width="110%" height="120%" color-interpolation-filters="sRGB">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="7" result="depth"></feGaussianBlur>
+      <feSpecularLighting in="depth" surfaceScale="12" specularConstant="0.7" specularExponent="26" lighting-color="#ffffff" result="spec">
+        <fePointLight x="900" y="-200" z="320" data-light="live"></fePointLight>
+      </feSpecularLighting>
+      <feComposite in="spec" in2="SourceAlpha" operator="in" result="specClip"></feComposite>
+      <feComponentTransfer in="specClip" result="soft"><feFuncA type="linear" slope="0.6"></feFuncA></feComponentTransfer>
+      <feMerge><feMergeNode in="SourceGraphic"></feMergeNode><feMergeNode in="soft"></feMergeNode></feMerge>
+    </filter>
+  </defs>
+</svg>

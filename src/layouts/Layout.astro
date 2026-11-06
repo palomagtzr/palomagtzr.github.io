@@ -6,6 +6,9 @@ import '@fontsource/inter/latin-500.css';
 import '@fontsource/inter/latin-600.css';
 import bricolageWoff2 from '@fontsource-variable/bricolage-grotesque/files/bricolage-grotesque-latin-wght-normal.woff2?url';
 import inter400Woff2 from '@fontsource/inter/files/inter-latin-400-normal.woff2?url';
+import SlimeDefs from '../components/SlimeDefs.astro';
+import Loader from '../components/Loader.astro';
+import Cursor from '../components/Cursor.astro';
 
 const title = 'Paloma Gutiérrez Ricaud — Systems engineer & product designer';
 const description =
@@ -37,12 +40,18 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
     <meta name="twitter:image" content={ogImage} />
     <link rel="preload" as="font" type="font/woff2" href={bricolageWoff2} crossorigin />
     <link rel="preload" as="font" type="font/woff2" href={inter400Woff2} crossorigin />
-    <script is:inline>document.documentElement.classList.add('js');</script>
+    <script is:inline>
+      document.documentElement.classList.add('js');
+      try { if (sessionStorage.getItem('pg-loaded')) document.documentElement.classList.add('no-loader'); } catch (e) {}
+    </script>
     <slot name="head" />
   </head>
   <body>
     <a href="#main" class="skip-link label font-semibold">Skip to content</a>
+    <SlimeDefs />
+    <Loader />
     <slot />
+    <Cursor />
     <script>import '../scripts/main';</script>
   </body>
 </html>

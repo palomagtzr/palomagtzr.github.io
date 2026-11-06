@@ -87,3 +87,20 @@
   .js [data-hero-title], .js [data-hero-copy], .js [data-hero-art] { visibility: visible; }
   html { scroll-behavior: auto; }
 }
+
+/* Loader: only with JS, only on the first visit of the session, never with reduced motion */
+#loader { display: none; }
+.js #loader { display: flex; }
+.js.no-loader #loader { display: none; }
+@media (prefers-reduced-motion: reduce) { .js #loader { display: none; } }
+
+/* Slime */
+.slime-filter, .hl-slime { filter: url(#slime-gloss); }
+.js .hl-smear { transform: scaleX(0); transform-origin: 0% 50%; }
+.js .hl-drip { transform: scaleY(0); transform-origin: 50% 0%; }
+.js .hl-fall { opacity: 0; }
+@media (prefers-reduced-motion: reduce) {
+  .js .hl-smear { transform: none; }
+  .js .hl-drip { transform: none; }
+}
+.wordmark-shine { filter: url(#wordmark-shine); }
