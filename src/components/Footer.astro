@@ -1,16 +1,33 @@
 ---
-import { Image } from 'astro:assets';
-import wordmark from '../assets/paloma_slime.png';
+/**
+ * Footer wordmark: "@palomagtzr" as live SVG text (crisp on any screen), capped
+ * with a slime layer clipped to the glyphs, hanging drips and drops that fall
+ * now and then. Geometry is fitted to the text in footer.ts once fonts load.
+ */
 ---
 <footer id="contact" class="bg-paper overflow-hidden scroll-mt-20" aria-labelledby="contact-title" data-section="contact">
   <div class="container-x pt-10 flex flex-wrap justify-between gap-6 label leading-[1.6]">
     <h2 id="contact-title" class="m-0 font-semibold label">Let's build something<br />people love using</h2>
     <div class="flex flex-col items-start -my-1"><a href="mailto:palomagutric@gmail.com" class="no-underline font-semibold py-1">Email</a><a href="https://www.linkedin.com/in/palomagtzr" class="no-underline font-semibold py-1" rel="me">LinkedIn</a><a href="/cv.pdf" download="CV_Paloma_Gutierrez_Ricaud.pdf" class="no-underline font-semibold py-1">Download CV</a></div>
   </div>
-  <div class="px-4 sm:px-6 pt-8 flex justify-center">
-    <div class="relative w-full max-w-[1560px]" data-wordmark>
-      <Image src={wordmark} alt="Paloma" widths={[640, 1000, 1560, 1800]} sizes="(min-width: 1600px) 1560px, calc(100vw - 48px)" class="w-full h-auto" loading="lazy" decoding="async" data-wordmark-img />
-    </div>
+  <div class="px-4 sm:px-6 pt-10 pb-2 flex justify-center">
+    <a href="https://www.linkedin.com/in/palomagtzr" class="block w-full max-w-[1560px] no-underline focus-visible:outline-offset-8 rounded-lg" aria-label="@palomagtzr on LinkedIn" rel="me" data-wordmark>
+      <svg class="block w-full h-auto overflow-visible" viewBox="0 0 1000 220" aria-hidden="true" focusable="false" data-wm-svg>
+        <defs>
+          <clipPath id="wm-clip"><text class="wm-text" x="0" y="150">@palomagtzr</text></clipPath>
+        </defs>
+        <text class="wm-text" x="0" y="150" fill="#141414" data-wm-text>@palomagtzr</text>
+        <g clip-path="url(#wm-clip)">
+          <g data-wm-slime>
+            <path fill="#B87F00" fill-opacity="0.4" data-wm-shadow></path>
+            <path fill="url(#slime-grad)" data-wm-slab></path>
+            <g fill="none" stroke="#FFFFFF" stroke-opacity="0.85" stroke-width="7" stroke-linecap="round" data-wm-gloss></g>
+          </g>
+        </g>
+        <g data-wm-drips></g>
+        <g data-wm-drops></g>
+      </svg>
+    </a>
   </div>
   <div class="container-x pt-4 pb-7 flex flex-wrap justify-between gap-4 label text-ink-3">
     <span>© 2026 Paloma Gutiérrez Ricaud</span>
