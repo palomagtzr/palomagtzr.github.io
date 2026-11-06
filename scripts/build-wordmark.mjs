@@ -136,5 +136,7 @@ ${gloss.join('\n')}
 
 writeFileSync('src/assets/palomagtzr_wordmark.inline.svg', svg);
 writeFileSync('src/data/wordmark.json', JSON.stringify({ viewBox: `${vb.x} ${vb.y} ${vb.w} ${vb.h}`, tips, floor: f2(vb.y + vb.h + 110) }, null, 2));
-writeFileSync('/private/tmp/claude-501/-Users-paloma-Developer-portfolio/f0a82c4a-b49e-403f-a319-4f98e0963b5e/scratchpad/wordmark-preview.svg', `<svg xmlns="http://www.w3.org/2000/svg" viewBox="${vb.x} ${vb.y} ${vb.w} ${vb.h}" width="${vb.w * 2}" height="${vb.h * 2}"><rect x="${vb.x}" y="${vb.y}" width="${vb.w}" height="${vb.h}" fill="#F6F4EE"/>${svg}</svg>`);
+if (process.env.WORDMARK_PREVIEW) {
+  writeFileSync('wordmark-preview.svg', `<svg xmlns="http://www.w3.org/2000/svg" viewBox="${vb.x} ${vb.y} ${vb.w} ${vb.h}" width="${vb.w * 2}" height="${vb.h * 2}"><rect x="${vb.x}" y="${vb.y}" width="${vb.w}" height="${vb.h}" fill="#F6F4EE"/>${svg}</svg>`);
+}
 console.log('wordmark built', vb, 'tips', tips.length, 'bytes', svg.length);

@@ -19,12 +19,22 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
-      - name: Install, build and upload
-        uses: withastro/action@v4
+        uses: actions/checkout@v5
+      - name: Set up Node
+        uses: actions/setup-node@v5
         with:
           node-version: 22
-          package-manager: npm@latest
+          cache: npm
+      - name: Configure Pages
+        uses: actions/configure-pages@v5
+      - name: Install
+        run: npm ci
+      - name: Build
+        run: npm run build
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v4
+        with:
+          path: dist
 
   deploy:
     needs: build
