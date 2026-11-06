@@ -1,0 +1,10 @@
+---
+/** Panel background that pours in from the top with a dripping wavy edge (translateY once). */
+interface Props { color: string; class?: string }
+const { color, class: cls = '' } = Astro.props;
+---
+<div class:list={['absolute inset-0 z-0', cls]} style={`background:${color}`} aria-hidden="true" data-pour>
+  <svg class="absolute left-0 right-0 top-full w-full h-[44px] block" viewBox="0 0 1440 44" preserveAspectRatio="none" focusable="false">
+    <path d="M0 0 L1440 0 L1440 8 C1390 8 1370 36 1300 34 C1230 32 1210 6 1140 8 C1070 10 1050 40 980 38 C910 36 890 4 820 6 C750 8 730 42 660 40 C590 38 570 8 500 10 C430 12 410 38 340 36 C270 34 250 6 180 8 C110 10 70 24 0 16 Z" fill={color}></path>
+  </svg>
+</div>

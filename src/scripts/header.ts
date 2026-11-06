@@ -31,7 +31,7 @@ export function initHeader(lenis: Lenis | null) {
     });
   });
 
-  qa<HTMLAnchorElement>('a[href^="#"]').forEach((a) => {
+  qa<HTMLAnchorElement>('a[href^="#"]:not([data-index-link])').forEach((a) => {
     a.addEventListener('click', (e) => {
       const target = a.hash.length > 1 ? document.querySelector<HTMLElement>(a.hash) : document.body;
       if (!target) return;

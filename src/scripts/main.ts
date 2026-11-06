@@ -29,7 +29,7 @@ if (env.reduced) {
   const intro = document.fonts.ready.then(() => initIntro(lenis));
   initHero(intro, introShown);
   initHeader(lenis);
-  initProjects();
+  initProjects(lenis);
   initBand();
   initHow();
   initToolkit();

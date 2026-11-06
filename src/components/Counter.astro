@@ -1,0 +1,18 @@
+---
+/** Project number that rolls like a mechanical counter: each digit is a masked column. */
+interface Props { value: string; class?: string }
+const { value, class: cls = '' } = Astro.props;
+const columns = value.split('').map((d, i) => {
+  const digits = i === 0 && d === '0' ? ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0'] : ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
+  return { digits, target: digits.indexOf(d) };
+});
+---
+<span class:list={['display leading-none tracking-[-0.05em] inline-flex', cls]} aria-hidden="true" data-number={value}>
+  {columns.map((c) => (
+    <span class="h-[1em] overflow-hidden inline-block">
+      <span class="block" style={`transform:translateY(-${c.target}em)`} data-digit-col={c.target}>
+        {c.digits.map((d) => <span class="block h-[1em]">{d}</span>)}
+      </span>
+    </span>
+  ))}
+</span>
