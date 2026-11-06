@@ -5,7 +5,7 @@ import { hint, unhint } from './motion';
 
 const NS = 'http://www.w3.org/2000/svg';
 /** Tips of the six hanging drips, in the wordmark's viewBox (2172×724). */
-const TIPS: [number, number][] = [[257, 547], [410, 534], [709, 531], [1091, 540], [1369, 522], [1884, 538]];
+const TIPS: [number, number][] = [[256, 539], [412, 526], [707, 523], [1091, 532], [1369, 515], [1885, 531]];
 const FLOOR = 724 + 120;
 
 function el<K extends keyof SVGElementTagNameMap>(tag: K, attrs: Record<string, string | number> = {}) {
@@ -36,14 +36,13 @@ function buildPool(g: SVGGElement) {
 export function initFooter() {
   const link = q('[data-wordmark]');
   const svg = q<SVGSVGElement>('[data-wm-svg]');
-  const slime = q('#wm-slime');
-  const gloss = q('#wm-gloss');
+  const cap = q('[data-wm-cap]'); // gloss + slime, moved together so no white edge ever shows
   const dropsG = q<SVGGElement>('[data-wm-drops]');
-  if (!link || !svg || !slime || !gloss || !dropsG) return;
-  const layers = [slime, gloss];
+  if (!link || !svg || !cap || !dropsG) return;
+  const layers = [cap];
 
   gsap.set(link, { transformOrigin: '50% 100%', y: 90, scaleY: 1.1, scaleX: 0.95, autoAlpha: 0 });
-  gsap.set(layers, { y: -14 });
+  gsap.set(cap, { y: -14, transformOrigin: '50% 0%' });
   gsap.timeline({
     scrollTrigger: { trigger: link, start: 'top 92%', once: true },
     onStart: () => hint([link, ...layers]),
@@ -84,7 +83,7 @@ export function initFooter() {
   // Hover: the slime trembles once.
   if (env.fine) {
     link.addEventListener('pointerenter', () => {
-      gsap.fromTo(layers, { scaleY: 1.03 }, { scaleY: 1, duration: 0.8, ease: 'elastic.out(1, 0.35)', transformOrigin: '50% 0%', overwrite: 'auto' });
+      gsap.fromTo(cap, { scaleY: 1.03 }, { scaleY: 1, duration: 0.8, ease: 'elastic.out(1, 0.35)', transformOrigin: '50% 0%', overwrite: 'auto' });
     });
   }
 }

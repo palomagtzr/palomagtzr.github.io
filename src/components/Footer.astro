@@ -1,12 +1,17 @@
 ---
 /**
  * Footer wordmark: the illustrated "@palomagtzr" SVG inlined so its layers can
- * move (#wm-ink letters, #wm-slime slime with hanging drips, #wm-gloss shine).
+ * move (#wm-ink letters; #wm-gloss white silhouette under #wm-slime, whose holes
+ * reveal the shine). Gloss and slime are animated together as one group.
  * Drops that fall from the drips are added by footer.ts in the same viewBox.
  */
 import traced from '../assets/palomagtzr_wordmark.svg?raw';
 // Inline only the layers: drop the C2PA metadata and the root <svg> element.
-const paths = traced.replace(/<metadata>[\s\S]*?<\/metadata>/, '').replace(/^[\s\S]*?<svg[^>]*>/, '').replace(/<\/svg>\s*$/, '');
+const layers = traced.replace(/<metadata>[\s\S]*?<\/metadata>/, '').replace(/^[\s\S]*?<svg[^>]*>/, '').replace(/<\/svg>\s*$/, '');
+// #wm-gloss is a white silhouette under #wm-slime (the shine shows through holes in the
+// slime), so both must move as one: wrap them in a single group that the script animates.
+const glossAt = layers.indexOf('<g id="wm-gloss"');
+const paths = glossAt >= 0 ? `${layers.slice(0, glossAt)}<g data-wm-cap>${layers.slice(glossAt)}</g>` : layers;
 ---
 <footer id="contact" class="bg-paper overflow-hidden scroll-mt-20" aria-labelledby="contact-title" data-section="contact">
   <div class="container-x pt-10 flex flex-wrap justify-between gap-6 label leading-[1.6]">
